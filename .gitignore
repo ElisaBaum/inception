@@ -1,0 +1,17 @@
+# IntelliJ
+*.iml
+.idea
+
+# misc
+.DS_Store
+
+# dependencies
+**/node_modules
+
+# build
+**/.cache
+**/dist
+**.js.map
+
+# coverage
+**/coverage

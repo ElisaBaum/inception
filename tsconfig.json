@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "lib": ["dom", "es6"],
+    "jsx": "react",
+    "sourceMap": true,
+    "declaration": true,
+    "skipLibCheck": true,
+    "strictNullChecks": true,
+    "pretty": true,
+    "allowSyntheticDefaultImports": true
+  },
+  "include": [
+    "packages"
+  ],
+  "exclude": [
+    "node_modules",
+    "packages/**/node_modules",
+    "packages/**/*.spec.ts*"
+  ]
+}

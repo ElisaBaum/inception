@@ -1,0 +1,24 @@
+{
+  "name": "inception",
+  "version": "1.0.0",
+  "description": "",
+  "author": "",
+  "license": "ISC",
+  "scripts": {
+    "lerna": "lerna bootstrap",
+    "start": "lerna bootstrap && lerna run --parallel start",
+    "build": "lerna bootstrap && lerna run build",
+    "test": "lerna bootstrap && lerna run test",
+    "lint": "lerna run lint"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.12",
+    "jest": "^24.7.1",
+    "lerna": "^3.13.4",
+    "ts-jest": "^24.0.2",
+    "tslint": "^5.16.0"
+  },
+  "dependencies": {
+    "typescript": "^3.4.5"
+  }
+}
