@@ -12,7 +12,7 @@ before_deploy:
 deploy:
   provider: firebase
   token:
-    secure: "$FIREBASE_TOKEN"
+    secure: "mV6t8XggBSPAMVG4KYsAVKU9qmj3G7UC8VEW9aYEKIOI/jWM4iTaOtI0NlpVY/cWd08cdnoOOw2O5d2uHxZmPJSonmqD3ujYfDqT8QGZeo6J+TINOBFIT5N/urQecGlVe0ipRZ63OsFJHAkrb1fzfifNtOWjDJ6NI+yI9k+GLm0NXXqmWWxc1oVAj22OjrVeVn2xgpwcLyqFjpmQG+YxC4k2eYjXl1iSg3397GTjazgZAerYE3mgmeH/ujX/d765ICpgwU7p41kSh70YimikbBDf32nTbU9TEaCXFO6rwM7uzEDYNg2WFZQl6tISEJM/0hRcbtNKadF6FSguj8FvHg/kCzjoMTyhtobSfEVWc+CnmSy4/jgR1goU4zFjsgdELvJgoM1/nHFKu86pZ3rmPJaY22an3y5IL/sIHDJgXbIhHc6MqNsioE5YXrPW/Qgo4fathnxLhJqr43r8g0o0PycfQy0e9EDPZJd8sSlpyr+M7SIq9QVkoNjFrjiJMuFfbllFXuLUGYU7CvFFfqdjHeyAfyHKS+2H4NYYCfm2ezReqy6qLhjGhp2XgVEg8rAYzWQcRzsSeXBKcSpGHk2jmuFV+9n1LFmXlL18w0lEZ1ZFQqRfkQNNGUeq9ZeAcre1YS/usSC9JYNpSUH5/x3ScBHuwBShgFwN7vOKotOwBq8="
   project: inception
   skip_cleanup: true
   on:
