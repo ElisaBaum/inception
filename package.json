@@ -11,18 +11,15 @@
     "test": "lerna run test",
     "lint": "lerna run lint",
     "prestart": "npm run lerna",
-    "prebuild": "npm run lerna",
-    "pretest": "npm run lerna",
-    "prelint": "npm run lerna"
+    "prebuild": "npm run lerna"
   },
   "devDependencies": {
     "@types/jest": "^24.0.12",
     "jest": "^24.7.1",
     "lerna": "^3.13.4",
     "ts-jest": "^24.0.2",
-    "tslint": "^5.16.0"
-  },
-  "dependencies": {
+    "tslint": "^5.16.0",
     "typescript": "^3.4.5"
-  }
+  },
+  "dependencies": {}
 }
