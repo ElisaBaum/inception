@@ -14,5 +14,6 @@ deploy:
   token:
     secure: "$FIREBASE_TOKEN"
   project: inception
+  skip_cleanup: true
   on:
     branch: master
