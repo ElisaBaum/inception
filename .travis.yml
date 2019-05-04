@@ -8,11 +8,11 @@ script:
 - npm run lint
 - npm run test
 before_deploy:
-  - npm run build
+- npm run build
 deploy:
   provider: firebase
   token:
-    secure: $FIREBASE_TOKEN
+    secure: "$FIREBASE_TOKEN"
   project: inception
   on:
     branch: master
