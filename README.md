@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/ElisaBaum/inception.svg?branch=master)](https://travis-ci.org/ElisaBaum/inception)
+
 # Inception
 
 ## How To Use
