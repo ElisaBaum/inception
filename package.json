@@ -6,10 +6,14 @@
   "license": "ISC",
   "scripts": {
     "lerna": "lerna bootstrap",
-    "start": "lerna bootstrap && lerna run --parallel start",
-    "build": "lerna bootstrap && lerna run build",
-    "test": "lerna bootstrap && lerna run test",
-    "lint": "lerna bootstrap && lerna run lint"
+    "start": "lerna run --parallel start",
+    "build": "lerna run build",
+    "test": "lerna run test",
+    "lint": "lerna run lint",
+    "prestart": "npm run lerna",
+    "prebuild": "npm run lerna",
+    "pretest": "npm run lerna",
+    "prelint": "npm run lerna"
   },
   "devDependencies": {
     "@types/jest": "^24.0.12",

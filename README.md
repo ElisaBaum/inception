@@ -9,16 +9,9 @@ All parts of the app are located in the ```packages``` folder.
 ##### Set up
 To set up the project, run
 ```bash
-npm i
+npm install
 ``` 
-at the root of the project. All dependencies for modules will be installed via Lerna with
-```bash
-npm run start
-```
-or
-```bash
-npm run build
-``` 
+at the root of the project. 
 
 ##### Start
 Links local packages together, installs remaining package dependencies
