@@ -1,11 +1,17 @@
 language: node_js
-
 node_js:
-  - "10"
-
+- '10'
 install:
-  - npm install
-
+- npm install
 script:
-  - npm run lint
-  - npm run test
+- npm run lint
+- npm run test
+before_deploy:
+  - npm run build
+deploy:
+  provider: firebase
+  token:
+    secure: $FIREBASE_TOKEN
+  project: inception
+  on:
+    branch: master
