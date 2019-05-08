@@ -8,6 +8,10 @@ import Search from '@material-ui/icons/Search';
 import Button from '@material-ui/core/Button';
 import {Grid, StyleRulesCallback} from '@material-ui/core';
 import withStyles from '@material-ui/core/styles/withStyles';
+import {Card} from "./shared/Card/Card";
+import {CardHeader} from "./shared/Card/CardHeader";
+import {CardContent} from "./shared/Card/CardContent";
+import {CardFooter} from "./shared/Card/CardFooter";
 
 const styles: StyleRulesCallback = theme => ({
     root: {
@@ -53,6 +57,20 @@ export const App = ({classes}) => (
                     >
                         Test
                     </Button>
+                </Grid>
+                <Grid item xs={12}>
+                    <Card>
+                        <CardHeader title={'Avengers: Endgame'} />
+                        <CardContent>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mi orci. Cras et sapien lobortis,
+                            faucibus augue a, egestas nulla. Pellentesque vehicula placerat portt…
+                        </CardContent>
+                        <CardFooter>
+                            <div>user</div>
+                            <div>date</div>
+                            <div>Comment</div>
+                        </CardFooter>
+                    </Card>
                 </Grid>
             </Grid>
         </Grid>

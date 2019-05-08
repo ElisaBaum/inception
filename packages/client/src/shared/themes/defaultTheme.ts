@@ -24,6 +24,10 @@ export const defaultTheme = createMuiTheme({
     typography: {
         useNextVariants: true,
         fontFamily: '\'Nunito\', sans-serif',
+        h2: {
+            fontSize: '1rem',
+            fontWeight: 'normal',
+        }
     },
     overrides: {
         MuiButton: {
@@ -59,6 +63,19 @@ export const defaultTheme = createMuiTheme({
                     borderBottom: `1px solid ${defaultColor}`,
                 },
             },
+        },
+        MuiPaper: {
+            elevation1: {
+                boxShadow: '0 0 6px #EEEFF4'
+            },
+            rounded: {
+                borderRadius: '.7rem',
+            }
+        },
+        MuiCardActions: {
+            action: {
+                margin: 0,
+            }
         }
     }
 });
