@@ -1,0 +1,16 @@
+@font-face {
+  font-family: 'Nunito', sans-serif;
+  src: url(Nunito/Nunito-Bold.ttf),
+  url(Nunito/Nunito-ExtraLight.ttf),
+  url(Nunito/Nunito-Light.ttf),
+  url(Nunito/Nunito-Regular.ttf),
+  url(Nunito/Nunito-SemiBold.ttf)
+}
+
+body {
+  margin: 0;
+  font-family: 'Nunito', sans-serif;
+}
+html, body {
+  height: 100%;
+}

@@ -11,7 +11,12 @@ To set up the project, run
 ```bash
 npm install
 ``` 
-at the root of the project. 
+at the root of the project.
+
+To add a new dependency to a specific package, run:
+```
+lerna add @material-ui/icons packages/client
+```
 
 ##### Start
 Links local packages together, installs remaining package dependencies
