@@ -1,62 +1,57 @@
 import * as React from 'react';
-import {defaultColor, defaultTheme} from './shared/themes/defaultTheme';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
-import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import Search from '@material-ui/icons/Search';
-import Button from '@material-ui/core/Button';
-import {Grid, StyleRulesCallback} from '@material-ui/core';
+import {Grid, Theme, WithStyles} from '@material-ui/core';
 import withStyles from '@material-ui/core/styles/withStyles';
+import MuiIcon from '@material-ui/core/Icon';
 
-const styles: StyleRulesCallback = theme => ({
+import {defaultColor, defaultTheme} from './shared/themes/defaultTheme';
+import {Button} from './shared/Button/Button';
+import {TextField} from './shared/TextField/TextField';
+
+const styles = (theme: Theme) => ({
     root: {
         flexGrow: 1,
-        padding: theme.spacing.unit * 2
+        paddingTop: theme.spacing.unit,
+        paddingLeft: theme.spacing.unit * 3,
+        paddingRight: theme.spacing.unit * 3,
     },
     test: {
         color: 'red'
     }
 });
 
-export const App = ({classes}) => (
+const Icon = withStyles({
+    root: {
+        color: defaultColor
+    }
+})(MuiIcon);
+
+interface AppProps extends WithStyles<typeof styles> {
+}
+
+export const App = withStyles(styles)((props: AppProps) => (
     <MuiThemeProvider theme={defaultTheme}>
-        <Grid container spacing={8} className={classes.root}>
+        <Grid container spacing={8} className={props.classes.root}>
             <Grid container spacing={8}>
                 Avengers: Endgame
                 <Grid item xs={12}>
                     <Typography component={'h1'}>Headline</Typography>
                 </Grid>
                 <Grid item xs={12}>
-                    <TextField
-                        fullWidth
-                        placeholder="Search"
-                        margin="normal"
-                        InputLabelProps={{
-                            disableAnimation: true
-                        }}
-                        InputProps={{
-                            startAdornment: (
-                                <InputAdornment position="start">
-                                    <Search fontSize={'small'} nativeColor={defaultColor}/>
-                                </InputAdornment>
-                            ),
-                        }}
-                    />
+                    <TextField icon="search" placeholder="Search"/>
                 </Grid>
                 <Grid item xs={12}>
-                    <Button
-                        fullWidth
-                        variant="contained"
-                        size={'large'}
-                        color={'secondary'}
-                    >
-                        Test
+                    <Button fullWidth>
+                        Save
+                    </Button>
+                </Grid>
+                <Grid item xs={12}>
+                    <Button fullWidth color={'secondary'}>
+                        Cancel
                     </Button>
                 </Grid>
             </Grid>
         </Grid>
     </MuiThemeProvider>
-);
-
-export default withStyles(styles)(App);
+));

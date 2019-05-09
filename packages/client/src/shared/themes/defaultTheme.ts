@@ -26,39 +26,30 @@ export const defaultTheme = createMuiTheme({
         fontFamily: '\'Nunito\', sans-serif',
     },
     overrides: {
-        MuiButton: {
+        MuiIcon: {
             root: {
-                textTransform: 'none',
-                borderRadius: '.75rem',
-                boxShadow: 'none',
-            },
-            contained: {
-                boxShadow: 'none',
-            },
-            sizeLarge: {
-                padding: '12px 24px',
-                fontSize: '.875rem',
+                color: defaultColor
             }
         },
         MuiInput: {
-            input: {
-                // '&::-webkit-input-placeholder': {
-                //     color: defaultColor,
-                // },
-                fontSize: '.875rem',
-                '&::placeholder': {
-                    color: defaultColor,
-                    opacity: 1,
-                },
-            },
-            underline: {
-                '&:after': {
-                    borderBottom: `1px solid ${secondaryColor}`,
-                },
-                '&:before': {
-                    borderBottom: `1px solid ${defaultColor}`,
-                },
-            },
+            // input: {
+            //     // '&::-webkit-input-placeholder': {
+            //     //     color: defaultColor,
+            //     // },
+            //     fontSize: '.875rem',
+            //     '&::placeholder': {
+            //         color: defaultColor,
+            //         opacity: 1,
+            //     },
+            // },
+            // underline: {
+            //     '&:after': {
+            //         borderBottom: `1px solid ${secondaryColor}`,
+            //     },
+            //     '&:before': {
+            //         borderBottom: `1px solid ${defaultColor}`,
+            //     },
+            // },
         }
     }
 });
