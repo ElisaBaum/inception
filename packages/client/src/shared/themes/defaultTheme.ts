@@ -24,6 +24,14 @@ export const defaultTheme = createMuiTheme({
     typography: {
         useNextVariants: true,
         fontFamily: '\'Nunito\', sans-serif',
+        h1: {
+            fontSize: '1.25rem',
+            fontWeight: 'normal',
+        },
+        h2: {
+            fontSize: '1rem',
+            fontWeight: 'normal',
+        }
     },
     overrides: {
         MuiIcon: {
@@ -31,25 +39,18 @@ export const defaultTheme = createMuiTheme({
                 color: defaultColor
             }
         },
-        MuiInput: {
-            // input: {
-            //     // '&::-webkit-input-placeholder': {
-            //     //     color: defaultColor,
-            //     // },
-            //     fontSize: '.875rem',
-            //     '&::placeholder': {
-            //         color: defaultColor,
-            //         opacity: 1,
-            //     },
-            // },
-            // underline: {
-            //     '&:after': {
-            //         borderBottom: `1px solid ${secondaryColor}`,
-            //     },
-            //     '&:before': {
-            //         borderBottom: `1px solid ${defaultColor}`,
-            //     },
-            // },
+        MuiPaper: {
+            elevation1: {
+                boxShadow: '0 0 6px #EEEFF4'
+            },
+            rounded: {
+                borderRadius: '.7rem',
+            }
+        },
+        MuiCardActions: {
+            action: {
+                margin: 0,
+            }
         }
     }
 });

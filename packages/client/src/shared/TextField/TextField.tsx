@@ -8,7 +8,7 @@ import {defaultColor, secondaryColor} from '../themes/defaultTheme';
 
 const styles = theme => ({
     input: {
-        fontSize: '.875rem',
+        fontSize: '1rem',
         '&::placeholder': {
             color: defaultColor,
             opacity: 1,
@@ -35,7 +35,7 @@ type TextFieldProps = {
     placeholder: string;
 } & MuiTextFieldProps & WithStyles<typeof styles>;
 
-export const TextField = withStyles(styles)(({icon, ...props}: TextFieldProps) => (
+export const TextField = withStyles(styles)(({icon, classes, ...props}: TextFieldProps) => (
     <MuiTextField
         fullWidth
         margin="normal"
@@ -43,7 +43,7 @@ export const TextField = withStyles(styles)(({icon, ...props}: TextFieldProps) =
             disableAnimation: true
         }}
         InputProps={{
-            classes: props.classes,
+            classes,
             startAdornment: (
                 <InputAdornment position="start">
                     <Icon fontSize={'small'}>
