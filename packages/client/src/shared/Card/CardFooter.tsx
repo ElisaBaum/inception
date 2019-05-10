@@ -10,8 +10,8 @@ const styles = (theme: Theme) => ({
         padding: 0,
         justifyContent: 'space-between',
         color: defaultColor,
-        fontSize: '.8rem',
-        fontWeight: 600,
+        fontSize: '.85rem',
+        fontWeight: 400,
         marginTop: theme.spacing.unit,
     },
 });

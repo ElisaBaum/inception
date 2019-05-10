@@ -8,7 +8,7 @@ const styles = () => ({
         padding: 0,
     },
     cardContent: {
-        fontSize: '.85rem',
+        fontSize: '1rem',
         fontWeight: 300,
     },
 });

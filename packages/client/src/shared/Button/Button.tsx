@@ -1,6 +1,6 @@
 import withStyles, {CSSProperties} from '@material-ui/core/styles/withStyles';
 import MuiButton, {ButtonProps} from '@material-ui/core/Button';
-import {defaultColor, primaryColor, secondaryColor} from '../themes/defaultTheme';
+import {primaryColor, secondaryColor} from '../themes/defaultTheme';
 import * as React from 'react';
 
 const styles = (theme) => ({
