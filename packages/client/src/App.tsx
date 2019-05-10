@@ -16,6 +16,8 @@ import {Avatar} from './shared/Avatar/Avatar';
 import elisaAvatar from './elisa_avatar.JPG';
 import robinAvatar from './robin_avatar.png';
 import {Badge} from './shared/Badge/Badge';
+import {H2} from './shared/Headline/H2';
+import {Section} from './shared/Section/Section';
 
 const styles = (theme: Theme) => ({
     root: {
@@ -37,65 +39,77 @@ export const App = withStyles(styles)((props: AppProps) => (
                 <Grid item xs={12}>
                     <H1>Login</H1>
                 </Grid>
-                <Grid item xs={12}>
-                    <TextField icon="search" placeholder="Search"/>
-                </Grid>
-                <Grid item xs={12}>
-                    <Button fullWidth>
-                        Save
-                    </Button>
-                </Grid>
-                <Grid item xs={12}>
-                    <Button fullWidth color={'secondary'}>
-                        Cancel
-                    </Button>
-                </Grid>
-                <Grid item xs={12} container spacing={16}>
-                    <Grid item>
-                        <Badge badgeContent={'7'} forSize={'large'}>
-                            <Avatar size={'large'} alt={'Elisa'} src={elisaAvatar}/>
-                        </Badge>
+                <Section>
+                    <Grid item xs={12}>
+                        <TextField icon="search" placeholder="Search"/>
                     </Grid>
-                    <Grid item>
-                        <Badge badgeContent={'5'} forSize={'large'}>
-                            <Avatar size={'large'} alt={'Robin'} src={robinAvatar}/>
-                        </Badge>
+                    <Grid item xs={12}>
+                        <Button fullWidth>
+                            Save
+                        </Button>
                     </Grid>
-                </Grid>
-                <Grid item xs={12}>
-                    <Card>
-                        <CardHeader title={'Avengers: Endgame'}/>
-                        <CardContent>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mi orci. Cras et sapien lobortis,
-                            faucibus augue a, egestas nulla. Pellentesque vehicula placerat portt…
-                        </CardContent>
-                        <CardFooter>
-                            <Badge badgeContent={'9'}>
-                                <Avatar alt={'Robin'} src={robinAvatar}/>
+                    <Grid item xs={12}>
+                        <Button fullWidth color={'secondary'}>
+                            Cancel
+                        </Button>
+                    </Grid>
+                </Section>
+                <Section>
+                    <Grid item xs={12}>
+                        <H2>Ratings</H2>
+                    </Grid>
+                    <Grid item xs={12} container spacing={16}>
+                        <Grid item>
+                            <Badge badgeContent={'7'} forSize={'large'}>
+                                <Avatar size={'large'} alt={'Elisa'} src={elisaAvatar}/>
                             </Badge>
-                            <div>user</div>
-                            <div>date</div>
-                            <div>Comment</div>
-                        </CardFooter>
-                    </Card>
-                </Grid>
-                <Grid item xs={12}>
-                    <Card>
-                        <CardHeader title={'Captain Marvel'}/>
-                        <CardContent>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mi orci. Cras et sapien lobortis,
-                            faucibus augue a, egestas nulla. Pellentesque vehicula placerat portt…
-                        </CardContent>
-                        <CardFooter>
-                            <Badge badgeContent={'7'}>
-                                <Avatar alt={'Elisa'} src={elisaAvatar}/>
+                        </Grid>
+                        <Grid item>
+                            <Badge badgeContent={'5'} forSize={'large'}>
+                                <Avatar size={'large'} alt={'Robin'} src={robinAvatar}/>
                             </Badge>
-                            <div>user</div>
-                            <div>date</div>
-                            <div>Comment</div>
-                        </CardFooter>
-                    </Card>
-                </Grid>
+                        </Grid>
+                    </Grid>
+                </Section>
+                <Section>
+                    <Grid item xs={12}>
+                        <H2>Reviews</H2>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Card>
+                            <CardHeader title={'Avengers: Endgame'}/>
+                            <CardContent>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mi orci. Cras et sapien lobortis,
+                                faucibus augue a, egestas nulla. Pellentesque vehicula placerat portt…
+                            </CardContent>
+                            <CardFooter>
+                                <Badge badgeContent={'9'}>
+                                    <Avatar alt={'Robin'} src={robinAvatar}/>
+                                </Badge>
+                                <div>user</div>
+                                <div>date</div>
+                                <div>Comment</div>
+                            </CardFooter>
+                        </Card>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Card>
+                            <CardHeader title={'Captain Marvel'}/>
+                            <CardContent>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mi orci. Cras et sapien lobortis,
+                                faucibus augue a, egestas nulla. Pellentesque vehicula placerat portt…
+                            </CardContent>
+                            <CardFooter>
+                                <Badge badgeContent={'7'}>
+                                    <Avatar alt={'Elisa'} src={elisaAvatar}/>
+                                </Badge>
+                                <div>user</div>
+                                <div>date</div>
+                                <div>Comment</div>
+                            </CardFooter>
+                        </Card>
+                    </Grid>
+                </Section>
             </Grid>
         </Grid>
     </MuiThemeProvider>
