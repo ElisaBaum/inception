@@ -9,7 +9,7 @@ import {Icon} from '../Icon/Icon';
 
 const styles = (theme: Theme) => ({
     root: {
-        paddingBottom: '5px',
+        paddingBottom: '4px',
         marginTop: '-16px',
     },
     input: {

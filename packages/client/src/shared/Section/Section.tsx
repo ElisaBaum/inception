@@ -25,8 +25,9 @@ type SectionProps = {
 export const Section = withStyles(styles)(({title, classes, children}: SectionProps) => (
     <Grid container spacing={16} className={classes.sectionContainer}>
         {title && (
-            <Grid item xs={12} container alignItems={'center'} justify={'space-between'}>
+            <Grid item xs={12} container alignItems={'flex-end'} justify={'space-between'}>
                 <Grid item><H2>{title}</H2></Grid>
+                {/* TODO How to position actions while keep position of title? */}
                 {/*<Grid item><Button size={'small'}>Filter</Button></Grid>*/}
             </Grid>
         )}
