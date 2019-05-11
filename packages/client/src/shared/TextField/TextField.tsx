@@ -1,12 +1,17 @@
 import * as React from 'react';
 import withStyles, {WithStyles} from '@material-ui/core/styles/withStyles';
 import MuiTextField, {TextFieldProps as MuiTextFieldProps} from '@material-ui/core/TextField';
-import MuiIcon from '@material-ui/core/Icon/Icon';
+import {Theme} from '@material-ui/core';
 import InputAdornment from '@material-ui/core/InputAdornment';
 
 import {defaultColor, secondaryColor} from '../themes/defaultTheme';
+import {Icon} from '../Icon/Icon';
 
-const styles = theme => ({
+const styles = (theme: Theme) => ({
+    root: {
+        paddingBottom: '5px',
+        marginTop: '-16px',
+    },
     input: {
         fontSize: '1rem',
         '&::placeholder': {
@@ -23,12 +28,6 @@ const styles = theme => ({
         },
     },
 });
-
-const Icon = withStyles({
-    root: {
-        color: defaultColor
-    }
-})(MuiIcon);
 
 type TextFieldProps = {
     icon: string;

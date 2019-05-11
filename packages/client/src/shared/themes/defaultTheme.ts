@@ -25,12 +25,17 @@ export const defaultTheme = createMuiTheme({
         useNextVariants: true,
         fontFamily: '\'Lato\', sans-serif',
         h1: {
-            fontSize: '1.125rem',
+            fontSize: '1rem',
             fontWeight: 'normal',
         },
         h2: {
             fontSize: '1rem',
             fontWeight: 'normal',
+        },
+        h3: {
+            fontSize: '.85rem',
+            fontWeight: 'normal',
+            color: defaultColor,
         }
     },
     overrides: {
@@ -38,9 +43,6 @@ export const defaultTheme = createMuiTheme({
             root: {
                 color: defaultColor
             }
-        },
-        MuiAvatar: {
-
         },
         MuiPaper: {
             elevation1: {

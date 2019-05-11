@@ -10,23 +10,22 @@ import {Card} from './shared/Card/Card';
 import {CardHeader} from './shared/Card/CardHeader';
 import {CardContent} from './shared/Card/CardContent';
 import {Avatar} from './shared/Avatar/Avatar';
-
-import elisaAvatar from './elisa_avatar.JPG';
-import robinAvatar from './robin_avatar.png';
 import {Badge} from './shared/Badge/Badge';
-import {H2} from './shared/Headline/H2';
 import {Section} from './shared/Section/Section';
 import {Nav} from './shared/Nav/Nav';
 
+import elisaAvatar from './elisa_avatar.JPG';
+import robinAvatar from './robin_avatar.png';
+
 export const App = () => (
     <MuiThemeProvider theme={defaultTheme}>
-        <Nav title={'Welcome'}/>
+        <Nav title={'Welcome'} subTitle={'Elisa'}/>
         <Section>
             <Grid item xs={12}>
                 <TextField icon="search" placeholder="Search"/>
             </Grid>
             <Grid item xs={12}>
-                <Button fullWidth>
+                <Button fullWidth color={'primary'}>
                     Save
                 </Button>
             </Grid>
@@ -36,10 +35,7 @@ export const App = () => (
                 </Button>
             </Grid>
         </Section>
-        <Section>
-            <Grid item xs={12}>
-                <H2>Ratings</H2>
-            </Grid>
+        <Section title={'Ratings'}>
             <Grid item xs={12} container spacing={16}>
                 <Grid item>
                     <Badge badgeContent={'7'} forSize={'large'}>
@@ -53,10 +49,7 @@ export const App = () => (
                 </Grid>
             </Grid>
         </Section>
-        <Section>
-            <Grid item xs={12}>
-                <H2>Reviews</H2>
-            </Grid>
+        <Section title={'Reviews'}>
             <Grid item xs={12}>
                 <Card>
                     <CardHeader title={'Avengers: Endgame'}/>
@@ -92,6 +85,5 @@ export const App = () => (
                 </Card>
             </Grid>
         </Section>
-
     </MuiThemeProvider>
 );
