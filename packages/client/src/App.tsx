@@ -1,7 +1,6 @@
 import * as React from 'react';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
-import {Grid, Theme, WithStyles} from '@material-ui/core';
-import withStyles from '@material-ui/core/styles/withStyles';
+import {Grid} from '@material-ui/core';
 
 import {defaultTheme} from './shared/themes/defaultTheme';
 import {Button} from './shared/Button/Button';
@@ -19,20 +18,7 @@ import {H2} from './shared/Headline/H2';
 import {Section} from './shared/Section/Section';
 import {Nav} from './shared/Nav/Nav';
 
-const styles = (theme: Theme) => ({
-    root: {
-        flexGrow: 1,
-        paddingTop: theme.spacing.unit * 2,
-        paddingBottom: theme.spacing.unit * 2,
-        paddingLeft: theme.spacing.unit * 2.5,
-        paddingRight: theme.spacing.unit * 2.5,
-    },
-});
-
-interface AppProps extends WithStyles<typeof styles> {
-}
-
-export const App = withStyles(styles)((props: AppProps) => (
+export const App = () => (
     <MuiThemeProvider theme={defaultTheme}>
         <Nav title={'Welcome'}/>
         <Section>
@@ -108,4 +94,4 @@ export const App = withStyles(styles)((props: AppProps) => (
         </Section>
 
     </MuiThemeProvider>
-));
+);

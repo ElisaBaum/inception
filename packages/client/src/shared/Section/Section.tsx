@@ -3,7 +3,7 @@ import withStyles, {WithStyles} from '@material-ui/core/styles/withStyles';
 import {Grid} from '@material-ui/core';
 
 const styles = theme => ({
-    root: {
+    sectionContainer: {
         flexGrow: 1,
         paddingTop: theme.spacing.unit,
         paddingBottom: theme.spacing.unit * 3,
@@ -19,7 +19,7 @@ type SectionProps = {
 } & WithStyles<typeof styles>;
 
 export const Section = withStyles(styles)(({classes, children}: SectionProps) => (
-    <Grid container spacing={16} className={classes.root}>
+    <Grid container spacing={16} className={classes.sectionContainer}>
         {...children}
     </Grid>
 ));

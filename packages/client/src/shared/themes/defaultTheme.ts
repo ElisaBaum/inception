@@ -25,7 +25,7 @@ export const defaultTheme = createMuiTheme({
         useNextVariants: true,
         fontFamily: '\'Lato\', sans-serif',
         h1: {
-            fontSize: '1.25rem',
+            fontSize: '1.125rem',
             fontWeight: 'normal',
         },
         h2: {
