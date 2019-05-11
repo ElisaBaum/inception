@@ -10,7 +10,6 @@ import {CardFooter} from './shared/Card/CardFooter';
 import {Card} from './shared/Card/Card';
 import {CardHeader} from './shared/Card/CardHeader';
 import {CardContent} from './shared/Card/CardContent';
-import {H1} from './shared/Headline/H1';
 import {Avatar} from './shared/Avatar/Avatar';
 
 import elisaAvatar from './elisa_avatar.JPG';
@@ -18,6 +17,7 @@ import robinAvatar from './robin_avatar.png';
 import {Badge} from './shared/Badge/Badge';
 import {H2} from './shared/Headline/H2';
 import {Section} from './shared/Section/Section';
+import {Nav} from './shared/Nav/Nav';
 
 const styles = (theme: Theme) => ({
     root: {
@@ -34,83 +34,78 @@ interface AppProps extends WithStyles<typeof styles> {
 
 export const App = withStyles(styles)((props: AppProps) => (
     <MuiThemeProvider theme={defaultTheme}>
-        <Grid container className={props.classes.root}>
-            <Grid container spacing={16}>
-                <Grid item xs={12}>
-                    <H1>Login</H1>
-                </Grid>
-                <Section>
-                    <Grid item xs={12}>
-                        <TextField icon="search" placeholder="Search"/>
-                    </Grid>
-                    <Grid item xs={12}>
-                        <Button fullWidth>
-                            Save
-                        </Button>
-                    </Grid>
-                    <Grid item xs={12}>
-                        <Button fullWidth color={'secondary'}>
-                            Cancel
-                        </Button>
-                    </Grid>
-                </Section>
-                <Section>
-                    <Grid item xs={12}>
-                        <H2>Ratings</H2>
-                    </Grid>
-                    <Grid item xs={12} container spacing={16}>
-                        <Grid item>
-                            <Badge badgeContent={'7'} forSize={'large'}>
-                                <Avatar size={'large'} alt={'Elisa'} src={elisaAvatar}/>
-                            </Badge>
-                        </Grid>
-                        <Grid item>
-                            <Badge badgeContent={'5'} forSize={'large'}>
-                                <Avatar size={'large'} alt={'Robin'} src={robinAvatar}/>
-                            </Badge>
-                        </Grid>
-                    </Grid>
-                </Section>
-                <Section>
-                    <Grid item xs={12}>
-                        <H2>Reviews</H2>
-                    </Grid>
-                    <Grid item xs={12}>
-                        <Card>
-                            <CardHeader title={'Avengers: Endgame'}/>
-                            <CardContent>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mi orci. Cras et sapien lobortis,
-                                faucibus augue a, egestas nulla. Pellentesque vehicula placerat portt…
-                            </CardContent>
-                            <CardFooter>
-                                <Badge badgeContent={'9'}>
-                                    <Avatar alt={'Robin'} src={robinAvatar}/>
-                                </Badge>
-                                <div>user</div>
-                                <div>date</div>
-                                <div>Comment</div>
-                            </CardFooter>
-                        </Card>
-                    </Grid>
-                    <Grid item xs={12}>
-                        <Card>
-                            <CardHeader title={'Captain Marvel'}/>
-                            <CardContent>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mi orci. Cras et sapien lobortis,
-                                faucibus augue a, egestas nulla. Pellentesque vehicula placerat portt…
-                            </CardContent>
-                            <CardFooter>
-                                <Badge badgeContent={'7'}>
-                                    <Avatar alt={'Elisa'} src={elisaAvatar}/>
-                                </Badge>
-                                <div>user</div>
-                                <div>date</div>
-                                <div>Comment</div>
-                            </CardFooter>
-                        </Card>
-                    </Grid>
-                </Section>
+        <Nav title={'Welcome'}/>
+        <Section>
+            <Grid item xs={12}>
+                <TextField icon="search" placeholder="Search"/>
             </Grid>
-        </Grid>
+            <Grid item xs={12}>
+                <Button fullWidth>
+                    Save
+                </Button>
+            </Grid>
+            <Grid item xs={12}>
+                <Button fullWidth color={'secondary'}>
+                    Cancel
+                </Button>
+            </Grid>
+        </Section>
+        <Section>
+            <Grid item xs={12}>
+                <H2>Ratings</H2>
+            </Grid>
+            <Grid item xs={12} container spacing={16}>
+                <Grid item>
+                    <Badge badgeContent={'7'} forSize={'large'}>
+                        <Avatar size={'large'} alt={'Elisa'} src={elisaAvatar}/>
+                    </Badge>
+                </Grid>
+                <Grid item>
+                    <Badge badgeContent={'5'} forSize={'large'}>
+                        <Avatar size={'large'} alt={'Robin'} src={robinAvatar}/>
+                    </Badge>
+                </Grid>
+            </Grid>
+        </Section>
+        <Section>
+            <Grid item xs={12}>
+                <H2>Reviews</H2>
+            </Grid>
+            <Grid item xs={12}>
+                <Card>
+                    <CardHeader title={'Avengers: Endgame'}/>
+                    <CardContent>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mi orci. Cras et sapien lobortis,
+                        faucibus augue a, egestas nulla. Pellentesque vehicula placerat portt…
+                    </CardContent>
+                    <CardFooter>
+                        <Badge badgeContent={'9'}>
+                            <Avatar alt={'Robin'} src={robinAvatar}/>
+                        </Badge>
+                        <div>user</div>
+                        <div>date</div>
+                        <div>Comment</div>
+                    </CardFooter>
+                </Card>
+            </Grid>
+            <Grid item xs={12}>
+                <Card>
+                    <CardHeader title={'Captain Marvel'}/>
+                    <CardContent>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mi orci. Cras et sapien lobortis,
+                        faucibus augue a, egestas nulla. Pellentesque vehicula placerat portt…
+                    </CardContent>
+                    <CardFooter>
+                        <Badge badgeContent={'7'}>
+                            <Avatar alt={'Elisa'} src={elisaAvatar}/>
+                        </Badge>
+                        <div>user</div>
+                        <div>date</div>
+                        <div>Comment</div>
+                    </CardFooter>
+                </Card>
+            </Grid>
+        </Section>
+
     </MuiThemeProvider>
 ));
