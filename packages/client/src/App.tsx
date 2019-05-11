@@ -24,8 +24,8 @@ const styles = (theme: Theme) => ({
         flexGrow: 1,
         paddingTop: theme.spacing.unit * 2,
         paddingBottom: theme.spacing.unit * 2,
-        paddingLeft: theme.spacing.unit * 3,
-        paddingRight: theme.spacing.unit * 3,
+        paddingLeft: theme.spacing.unit * 2.5,
+        paddingRight: theme.spacing.unit * 2.5,
     },
 });
 
@@ -34,7 +34,7 @@ interface AppProps extends WithStyles<typeof styles> {
 
 export const App = withStyles(styles)((props: AppProps) => (
     <MuiThemeProvider theme={defaultTheme}>
-        <Grid container spacing={8} className={props.classes.root}>
+        <Grid container className={props.classes.root}>
             <Grid container spacing={16}>
                 <Grid item xs={12}>
                     <H1>Login</H1>
