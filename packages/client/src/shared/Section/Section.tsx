@@ -19,7 +19,7 @@ const styles = theme => ({
 type SectionProps = {
     title?: string;
     actions?: ReactNode[];
-    children: any[];
+    children: any[] | any ;
 } & WithStyles<typeof styles>;
 
 export const Section = withStyles(styles)(({title, classes, children}: SectionProps) => (
