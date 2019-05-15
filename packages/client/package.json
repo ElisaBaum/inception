@@ -20,6 +20,7 @@
     "tslint-react": "^4.0.0"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
   }
