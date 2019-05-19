@@ -1,8 +1,8 @@
 import * as React from 'react';
-import Typography from '@material-ui/core/Typography/Typography';
+import Typography, {TypographyProps} from '@material-ui/core/Typography/Typography';
 
-export const H3 = ({children}) => (
-  <Typography variant="h3">
+export const H3 = ({children, ...props}: TypographyProps) => (
+    <Typography variant="h3" {...props}>
       {children}
-  </Typography>
+    </Typography>
 );

@@ -52,7 +52,7 @@ export const App = () => (
         <Section title={'Reviews'}>
             <Grid item xs={12}>
                 <Card>
-                    <CardHeader title={'Avengers: Endgame'}/>
+                    <CardHeader title={'Avengers: Endgame'} subtitle={'test'} icon={'movie_creation'} action={<Avatar>7</Avatar>}/>
                     <CardContent>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mi orci. Cras et sapien lobortis,
                         faucibus augue a, egestas nulla. Pellentesque vehicula placerat portt…

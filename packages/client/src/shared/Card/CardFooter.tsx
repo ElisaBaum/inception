@@ -12,7 +12,7 @@ const styles = (theme: Theme) => ({
         color: defaultColor,
         fontSize: '.85rem',
         fontWeight: 400,
-        marginTop: theme.spacing.unit,
+        marginTop: 1.5 * theme.spacing.unit,
     },
 });
 
