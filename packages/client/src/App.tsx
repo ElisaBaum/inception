@@ -2,7 +2,7 @@ import * as React from 'react';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import {Grid} from '@material-ui/core';
 
-import {defaultTheme} from './shared/themes/defaultTheme';
+import {defaultTheme, secondaryColor} from './shared/themes/defaultTheme';
 import {Button} from './shared/Button/Button';
 import {TextField} from './shared/TextField/TextField';
 import {CardFooter} from './shared/Card/CardFooter';
@@ -13,6 +13,7 @@ import {Avatar} from './shared/Avatar/Avatar';
 import {Badge} from './shared/Badge/Badge';
 import {Section} from './shared/Section/Section';
 import {Nav} from './shared/Nav/Nav';
+import {Bubble} from "./shared/Bubble/Bubble";
 
 import elisaAvatar from './elisa_avatar.JPG';
 import robinAvatar from './robin_avatar.png';
@@ -52,7 +53,10 @@ export const App = () => (
         <Section title={'Reviews'}>
             <Grid item xs={12}>
                 <Card>
-                    <CardHeader title={'Avengers: Endgame'} subtitle={'test'} icon={'movie_creation'} action={<Avatar>7</Avatar>}/>
+                    <CardHeader title={'Avengers: Endgame'}
+                                subtitle={'test'}
+                                icon={'movie_creation'}
+                                action={<Bubble color={secondaryColor}>7</Bubble>}/>
                     <CardContent>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mi orci. Cras et sapien lobortis,
                         faucibus augue a, egestas nulla. Pellentesque vehicula placerat portt…
