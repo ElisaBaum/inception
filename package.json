@@ -10,11 +10,13 @@
     "build": "lerna run build",
     "test": "lerna run test",
     "lint": "lerna run lint",
+    "emulate": "firebase emulators:start",
     "prestart": "npm run lerna",
     "prebuild": "npm run lerna"
   },
   "devDependencies": {
     "@types/jest": "^24.0.12",
+    "firebase-tools": "^6.10.0",
     "jest": "^24.7.1",
     "lerna": "^3.13.4",
     "ts-jest": "^24.0.2",

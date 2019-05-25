@@ -1,12 +1,16 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
-import express from 'express';
-import strongErrorHandler from 'strong-error-handler';
-import cors from 'cors';
+import * as express from 'express';
+import * as cors from 'cors';
+import * as strongErrorHandler from 'strong-error-handler';
 import {ApolloServer, gql, IResolvers} from 'apollo-server-express';
+import {getMovie} from '@baum/ic-common/movies/movieAgent';
+
+admin.initializeApp();
 
 const typeDefs = gql`
     type Movie {
+        id: String
         title: String
         releaseDate: String
     }
@@ -16,28 +20,36 @@ const typeDefs = gql`
     }
 
     type Query {
-        movies: [Movie]
+        movie(movieId: String!): Movie
     }
 
     type Mutation {
-        createMovieRating(movieId: String!, ratingValue: Int!): Rating!
+        createMovieRating(movieId: String!, value: Int!): Rating!
     }
 `;
 
+const firestore = admin.firestore();
+
 const resolvers: IResolvers = {
     Query: {
-        movies: () => 'Hello world!',
+        movie: (obj, {movieId}, context, info) => getMovie(movieId)
     },
     Mutation: {
-        createMovieRating: (source, {movieId, ratingValue}) => {
-            const movie = admin
-                .firestore()
+        createMovieRating: async (source, {movieId, value}) => {
+            let movie: any = await firestore
                 .collection('movies')
                 .doc(movieId)
                 .get();
             if (!movie) {
-
+                movie = await getMovie(movieId);
+                firestore.doc('movies').create(movie);
             }
+            await firestore.doc('movieRatings').create({
+                userId: 'lW6UHwuRUsSckRsyQjKvOpaZxrn1',
+                movieId,
+                value
+            });
+            return {value};
         }
     }
 };
@@ -45,9 +57,9 @@ const resolvers: IResolvers = {
 const apolloServer = new ApolloServer({typeDefs, resolvers});
 
 const auth = () => async (req, res, next) => {
-    const [_, token] = req.get('Authorization').split('Bearer ');
+    const [_, tokenId] = req.get('Authorization').split('Bearer ');
     try {
-        await admin.auth().verifyIdToken(token);
+        await admin.auth().verifyIdToken(tokenId);
         next();
     } catch (e) {
         next(e);

@@ -20,6 +20,9 @@ export const signInWithGoogle = () => auth.signInWithPopup(googleProvider);
 
 auth.onAuthStateChanged(user => {
     console.log(user);
+    if (user) {
+        user.getIdToken();
+    }
 });
 const firestore = app.firestore();
 
@@ -27,11 +30,11 @@ export const createMovies = app.functions().httpsCallable('createMovie');
 
 // (async () => {
 //     try {
-//         const result = await firestore
-//             .collection('movies')
-//             .add({
-//                 title: 'Men in Black',
-//             });
+// const result = await firestore
+//     .collection('movies')
+//     .add({
+//         title: 'Men in Black',
+//     });
 //         console.log(result);
 //     } catch (e) {
 //         console.error(e);
