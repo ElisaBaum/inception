@@ -17,3 +17,6 @@
 
 # coverage
 **/coverage
+
+# logs
+firebase-debug.log
