@@ -21,6 +21,7 @@ const typeDefs = gql`
 
     type Query {
         movie(movieId: String!): Movie
+        fmovie(movieId: String!): Movie
     }
 
     type Mutation {
@@ -30,21 +31,30 @@ const typeDefs = gql`
 
 const firestore = admin.firestore();
 
+
 const resolvers: IResolvers = {
     Query: {
-        movie: (obj, {movieId}, context, info) => getMovie(movieId)
+        movie: (obj, {movieId}, context, info) => getMovie(movieId),
+        fmovie: async (obj, {movieId}, context, info) => {
+            const movie = await firestore
+                .doc(`movies/${movieId}`)
+                .get();
+            if (movie.exists) {
+                return movie.data();
+            }
+            throw new Error(`Movie with ID "${movieId}" does not exist`);
+        },
     },
     Mutation: {
         createMovieRating: async (source, {movieId, value}) => {
             let movie: any = await firestore
-                .collection('movies')
-                .doc(movieId)
+                .doc(`movies/${movieId}`)
                 .get();
-            if (!movie) {
+            if (!movie.exists) {
                 movie = await getMovie(movieId);
-                firestore.doc('movies').create(movie);
+                await firestore.collection('movies').doc(movieId).create(movie);
             }
-            await firestore.doc('movieRatings').create({
+            await firestore.collection('movieRatings').doc().create({
                 userId: 'lW6UHwuRUsSckRsyQjKvOpaZxrn1',
                 movieId,
                 value
