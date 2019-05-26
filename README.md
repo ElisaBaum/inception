@@ -22,10 +22,12 @@ npm run start
 ``` 
 
 ## Emulate Firebase
-Emulates firebase hosting and functions locally 
-```bash
-GOOGLE_APPLICATION_CREDENTIALS=path/to/credentials npm run emulate
-``` 
+In order to emulate firebase hosting, firstore and functions locally run the following commands:
+1. [Create credentials](https://firebase.google.com/docs/functions/local-emulator#set_up_admin_credentials_optional) 
+2. Set up firestore: `firebase init firestore`
+3. Install emulator: `firebase setup:emulators:firestore`
+4. Run emulator: `GOOGLE_APPLICATION_CREDENTIALS=path/to/credentials firebase emulators:start` or
+`GOOGLE_APPLICATION_CREDENTIALS=path/to/credentials npm run emulate`
 
 ## Build
 Links local packages together, installs remaining package dependencies and bundles all apps 
