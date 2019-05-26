@@ -9,6 +9,10 @@ import {getMovie} from '@baum/ic-common/movies/movieAgent';
 admin.initializeApp();
 
 const typeDefs = gql`
+    type User {
+        id: String
+    }
+    
     type Movie {
         id: String
         title: String
@@ -16,29 +20,63 @@ const typeDefs = gql`
     }
 
     type Rating {
+        # Change movieId to mediaId, add media field and concat id from media, mediaId, userId
+        id: String
         value: Int
+        movieId: String
+        userId: String
     }
 
     type Query {
         movie(movieId: String!): Movie
+        movies: [Movie]
         fmovie(movieId: String!): Movie
     }
 
     type Mutation {
-        createMovieRating(movieId: String!, value: Int!): Rating!
+        upsertMovieRating(movieId: String!, value: Int!): Rating!
     }
 `;
 
 const firestore = admin.firestore();
 
+const movieService = {
+    collection: firestore.collection('movies'),
+    async getAll(limit = 100) {
+        return (await this.collection.limit(limit).get()).docs.map(doc => (
+            {id: doc.id, ...doc.data()}
+        ));
+    },
+    get(id) {
+        return this.collection.doc(id).get();
+    },
+    create(id, data) {
+        return this.collection.doc(id).create(data);
+    }
+};
+
+const movieRatingService = {
+    collection: firestore.collection('movieRatings'),
+    createId({movieId, userId}: { userId: string, movieId: string }) {
+        return `${movieId}#${userId}`;
+    },
+    async upsert(data: { userId: string, movieId: string, value: number }) {
+        let movie: any = await movieService.get(data.movieId);
+        if (!movie.exists) {
+            movie = await getMovie(data.movieId);
+            await movieService.create(data.movieId, movie);
+        }
+        const id = this.createId(data);
+        await this.collection.doc(id).set(data, {merge: true});
+        return {id, ...data};
+    }
+};
 
 const resolvers: IResolvers = {
     Query: {
-        movie: (obj, {movieId}, context, info) => getMovie(movieId),
-        fmovie: async (obj, {movieId}, context, info) => {
-            const movie = await firestore
-                .doc(`movies/${movieId}`)
-                .get();
+        movies: () => movieService.getAll(),
+        movie: async (obj, {movieId}, context, info) => {
+            const movie = await movieService.get(movieId);
             if (movie.exists) {
                 return movie.data();
             }
@@ -46,21 +84,8 @@ const resolvers: IResolvers = {
         },
     },
     Mutation: {
-        createMovieRating: async (source, {movieId, value}) => {
-            let movie: any = await firestore
-                .doc(`movies/${movieId}`)
-                .get();
-            if (!movie.exists) {
-                movie = await getMovie(movieId);
-                await firestore.collection('movies').doc(movieId).create(movie);
-            }
-            await firestore.collection('movieRatings').doc().create({
-                userId: 'lW6UHwuRUsSckRsyQjKvOpaZxrn1',
-                movieId,
-                value
-            });
-            return {value};
-        }
+        upsertMovieRating: async (source, args) =>
+            movieRatingService.upsert({userId: 'lW6UHwuRUsSckRsyQjKvOpaZxrn1', ...args})
     }
 };
 
