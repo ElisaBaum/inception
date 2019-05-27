@@ -4,88 +4,56 @@ import * as express from 'express';
 import * as cors from 'cors';
 import * as strongErrorHandler from 'strong-error-handler';
 import {ApolloServer, gql, IResolvers} from 'apollo-server-express';
-import {getMovie} from '@baum/ic-common/movies/movieAgent';
 
+// Initializing app before using any firebase services is important
 admin.initializeApp();
+
+import {ratingMutation} from './rating';
+import {mediaQuery} from './media';
+
 
 const typeDefs = gql`
     type User {
         id: String
+        name: String
     }
-    
+
+    union Media = Movie
+
     type Movie {
         id: String
+        type: String
         title: String
         releaseDate: String
+        genres: [String]
     }
 
     type Rating {
-        # Change movieId to mediaId, add media field and concat id from media, mediaId, userId
         id: String
-        value: Int
-        movieId: String
+        rating: Int
+        type: String
+        review: String
+        mediaId: String
         userId: String
+        creationDate: String
     }
 
     type Query {
-        movie(movieId: String!): Movie
-        movies: [Movie]
-        fmovie(movieId: String!): Movie
+        mediaByExtId(type: String!, extId: String!): Media
+        mediaList: [Media]
     }
 
     type Mutation {
-        upsertMovieRating(movieId: String!, value: Int!): Rating!
+        upsertRatingByExtId(type: String!, extMediaId: String!, rating: Int!): Rating!
     }
 `;
 
-const firestore = admin.firestore();
-
-const movieService = {
-    collection: firestore.collection('movies'),
-    async getAll(limit = 100) {
-        return (await this.collection.limit(limit).get()).docs.map(doc => (
-            {id: doc.id, ...doc.data()}
-        ));
-    },
-    get(id) {
-        return this.collection.doc(id).get();
-    },
-    create(id, data) {
-        return this.collection.doc(id).create(data);
-    }
-};
-
-const movieRatingService = {
-    collection: firestore.collection('movieRatings'),
-    createId({movieId, userId}: { userId: string, movieId: string }) {
-        return `${movieId}#${userId}`;
-    },
-    async upsert(data: { userId: string, movieId: string, value: number }) {
-        let movie: any = await movieService.get(data.movieId);
-        if (!movie.exists) {
-            movie = await getMovie(data.movieId);
-            await movieService.create(data.movieId, movie);
-        }
-        const id = this.createId(data);
-        await this.collection.doc(id).set(data, {merge: true});
-        return {id, ...data};
-    }
-};
-
 const resolvers: IResolvers = {
     Query: {
-        movies: () => movieService.getAll(),
-        movie: async (obj, {movieId}, context, info) => {
-            const movie = await movieService.get(movieId);
-            if (movie.exists) {
-                return movie.data();
-            }
-            throw new Error(`Movie with ID "${movieId}" does not exist`);
-        },
+        ...mediaQuery,
     },
     Mutation: {
-        upsertMovieRating: async (source, args) =>
-            movieRatingService.upsert({userId: 'lW6UHwuRUsSckRsyQjKvOpaZxrn1', ...args})
+        ...ratingMutation,
     }
 };
 
