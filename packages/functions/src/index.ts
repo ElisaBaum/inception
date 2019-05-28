@@ -33,9 +33,9 @@ const typeDefs = gql`
         rating: Int
         type: String
         review: String
-        mediaId: String
-        userId: String
-        creationDate: String
+        media: Media
+        user: User
+        timestamp: String
     }
 
     type Query {
@@ -54,6 +54,11 @@ const resolvers: IResolvers = {
     },
     Mutation: {
         ...ratingMutation,
+    },
+    Media: {
+        __resolveType(obj, context, info) {
+            return obj.type.charAt(0).toUpperCase() + obj.type.substr(1, obj.type.length);
+        },
     }
 };
 
