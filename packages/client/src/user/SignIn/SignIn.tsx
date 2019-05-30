@@ -1,5 +1,5 @@
 import React from 'react';
-import {signInWithGoogle} from '../../shared/firebase/firebase';
+import {signInWithGoogle} from '../../shared/firebase';
 
 export const SignIn = () => {
 

@@ -20,8 +20,11 @@
     "tslint-react": "^4.0.0"
   },
   "dependencies": {
+    "apollo-boost": "^0.4.0",
     "firebase": "^6.0.2",
+    "graphql": "^14.3.1",
     "react": "^16.8.6",
+    "react-apollo": "^2.5.6",
     "react-dom": "^16.8.6"
   }
 }

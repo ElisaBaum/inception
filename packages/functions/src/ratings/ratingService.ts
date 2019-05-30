@@ -1,6 +1,7 @@
 import * as admin from 'firebase-admin';
-import {createMediaFromExt, getMediaByExtId} from './media';
+import {listFactory} from '../common/firestore';
 import Timestamp = admin.firestore.Timestamp;
+import {createMediaFromExt, getMediaByExtId} from '../media/mediaService';
 
 const firestore = admin.firestore();
 const collection = firestore.collection('ratings');
@@ -17,7 +18,7 @@ interface UpsertRatingData {
     type: string;
     rating: number;
     review?: string;
-    media: any;
+    media: { id: string };
     user: { id: string };
 }
 
@@ -25,6 +26,8 @@ interface Rating extends UpsertRatingData {
     id: string;
     timestamp: any;
 }
+
+export const getRatings = listFactory(collection);
 
 export const upsertRatingByExtId = async ({extMediaId, ...data}: UpsertFromExtRatingData) => {
     const media = (await getMediaByExtId(data.type, extMediaId)) ||
@@ -41,9 +44,4 @@ export const upsertRating = async (id: string, data: UpsertRatingData): Promise<
 };
 
 export const createIdFromExtId = (mediaId: string, extId: string) => `${mediaId}#${extId}`;
-
-export const ratingMutation = {
-    upsertRatingByExtId: (source, args) =>
-        upsertRatingByExtId({user: {id: 'lW6UHwuRUsSckRsyQjKvOpaZxrn1'}, ...args}),
-};
 
