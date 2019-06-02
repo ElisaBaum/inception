@@ -18,10 +18,12 @@ import {Bubble} from './shared/Bubble/Bubble';
 import elisaAvatar from './elisa_avatar.JPG';
 import robinAvatar from './robin_avatar.png';
 import {WhiteIcon} from './shared/Icon/Icon';
+import {SignIn} from './signin/SignIn';
 
 export const App = () => (
     <MuiThemeProvider theme={defaultTheme}>
         <Nav title={'Welcome'} subTitle={'Elisa'}/>
+        <SignIn/>
         <Section>
             <Grid item xs={12}>
                 <TextField icon="search" placeholder="Search"/>
