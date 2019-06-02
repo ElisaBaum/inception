@@ -1,30 +1,10 @@
 import * as admin from 'firebase-admin';
 import {listFactory} from '../common/firestore';
-import Timestamp = admin.firestore.Timestamp;
 import {createMediaFromExt, getMediaByExtId} from '../media/mediaService';
+import {Rating, UpsertFromExtRatingData, UpsertRatingData} from './ratingTypes';
+import Timestamp = admin.firestore.Timestamp;
 
 const collection = () => admin.firestore().collection('ratings');
-
-interface UpsertFromExtRatingData {
-    type: string;
-    rating: number;
-    review?: string;
-    extMediaId: string;
-    user: { id: string };
-}
-
-interface UpsertRatingData {
-    type: string;
-    rating: number;
-    review?: string;
-    media: { id: string };
-    user: { id: string };
-}
-
-interface Rating extends UpsertRatingData {
-    id: string;
-    timestamp: any;
-}
 
 export const getRatings = listFactory(collection);
 

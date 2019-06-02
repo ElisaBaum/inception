@@ -1,7 +1,8 @@
 import * as admin from 'firebase-admin';
+import nanoid from 'nanoid';
 import {getFactory} from '../../common/firestore';
 
-const collection = () => admin.firestore().collection('connectTokens');
+const collection = () => admin.firestore().collection('friendInvites');
 
 interface FriendInvite {
     token: string;
@@ -11,8 +12,8 @@ interface FriendInvite {
 
 export const getFriendInvite = getFactory<FriendInvite>(collection);
 export const createFriendInvite = async (userId: string) => {
-    const token = 'test'; // TODO generate token
-    const friendInvite = {userId, token};
+    const token = nanoid(68);
+    const friendInvite = {userId, token, timestamp: admin.firestore.Timestamp.now()};
     await collection().doc(token).create(friendInvite);
     return friendInvite;
 };

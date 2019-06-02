@@ -13,6 +13,12 @@ export const getFactory = <T>(collection: () => CollectionReference) => async (i
     }
 };
 
+export const upsertFactory = (collection: () => CollectionReference) => async (id: string, data: any) => {
+    const doc = {id, ...data};
+    await collection().doc(id).set(doc, {merge: true});
+    return doc;
+};
+
 export interface ListQuery {
     limit?: number;
     offset?: number;
