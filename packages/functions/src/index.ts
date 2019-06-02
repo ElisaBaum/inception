@@ -51,9 +51,22 @@ const typeDefs = gql`
     }
 
     type Mutation {
-        upsertRatingByExtId(type: String!, extMediaId: String!, rating: Int!, review: String): Rating!
-        createUserByFriendInvite(name: String!, inviteToken: String!): User
-        connectMe(inviteToken: String!): User
+
+        upsertRatingByExtId(
+            type: String!,
+            extMediaId: String!,
+            rating: Int!,
+            review: String
+        ): Rating!
+
+        createUserByFriendInvite(
+            name: String!,
+            inviteToken: String!
+        ): User
+
+        connectMe(
+            inviteToken: String!
+        ): User
     }
 `;
 

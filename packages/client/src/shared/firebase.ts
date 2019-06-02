@@ -30,7 +30,7 @@ auth.onAuthStateChanged(async user => {
                 }
             });
 
-            const result = await client.mutate({
+            await client.mutate({
                 mutation: gql`
                     mutation {
                         createUserByFriendInvite(name: "Robin", inviteToken: "test") {
@@ -39,7 +39,7 @@ auth.onAuthStateChanged(async user => {
                     }
                 `
             });
-            const result2 = await client.query({
+            await client.query({
                 query: gql`
                     query {
                         me {
@@ -49,7 +49,38 @@ auth.onAuthStateChanged(async user => {
                     }
                 `
             });
-            console.log(result, result2);
+            await client.mutate({
+                mutation: gql`
+                    mutation {
+                        upsertRatingByExtId(type: "Movie", extMediaId: "550", rating: 10) {
+                            id
+                        }
+                    }
+                `
+            });
+            await client.query({
+                query: gql`
+                    query {
+                        me {
+                            id
+                            name
+                            ratings {
+                                id
+                                rating
+                                review
+                                timestamp
+                                media {
+                                    __typename ...on Movie {
+                                        id
+                                        title
+                                        releaseDate
+                                    }
+                                }
+                            }
+                        }
+                    }
+                `
+            });
         } catch (e) {
             console.error(e);
         }

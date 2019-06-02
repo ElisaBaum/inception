@@ -3,8 +3,7 @@ import {listFactory} from '../common/firestore';
 import Timestamp = admin.firestore.Timestamp;
 import {createMediaFromExt, getMediaByExtId} from '../media/mediaService';
 
-const firestore = admin.firestore();
-const collection = firestore.collection('ratings');
+const collection = () => admin.firestore().collection('ratings');
 
 interface UpsertFromExtRatingData {
     type: string;
@@ -39,8 +38,8 @@ export const upsertRatingByExtId = async ({extMediaId, ...data}: UpsertFromExtRa
 
 export const upsertRating = async (id: string, data: UpsertRatingData): Promise<Rating> => {
     const rating = {id, timestamp: Timestamp.now(), ...data};
-    await collection.doc(id).set(rating, {merge: true});
-    return {...rating, timestamp: rating.timestamp.toDate().toISOString()};
+    await collection().doc(id).set(rating, {merge: true});
+    return rating;
 };
 
 export const createIdFromExtId = (mediaId: string, extId: string) => `${mediaId}#${extId}`;

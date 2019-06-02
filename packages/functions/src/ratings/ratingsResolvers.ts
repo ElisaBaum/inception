@@ -1,5 +1,6 @@
 import {IResolvers} from 'graphql-tools';
 import {upsertRatingByExtId} from './ratingService';
+import {authenticated} from '../common/authentication';
 
 export const ratingResolvers: IResolvers = {
     Query: {
@@ -7,7 +8,10 @@ export const ratingResolvers: IResolvers = {
         //     getRatings([['user.id', '=', '']])),
     },
     Mutation: {
-        upsertRatingByExtId: (source, args) =>
-            upsertRatingByExtId({user: {id: 'lW6UHwuRUsSckRsyQjKvOpaZxrn1'}, ...args}),
+        upsertRatingByExtId: authenticated((source, args, context) =>
+            upsertRatingByExtId({user: context.user, ...args})),
+    },
+    Rating: {
+        timestamp: (rating, args, context, info) => rating.timestamp.toDate().toISOString(),
     }
 };

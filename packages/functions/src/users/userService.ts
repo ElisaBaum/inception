@@ -2,8 +2,7 @@ import * as admin from 'firebase-admin';
 import {createFriendInvite, getFriendInvite} from './friends/friendInvites';
 import {createFactory, getFactory} from '../common/firestore';
 
-const firestore = admin.firestore();
-export const users = firestore.collection('users');
+const collection = () => admin.firestore().collection('users');
 
 // TODO move to common
 interface User {
@@ -11,8 +10,8 @@ interface User {
     name: string;
 }
 
-export const createUser = createFactory(users);
-export const getUser = getFactory<User>(users);
+export const createUser = createFactory(collection);
+export const getUser = getFactory<User>(collection);
 
 export const createUserByFriendInvite = async (id: string, name: string, inviteToken: string) => {
     await createFriendInvite('bla');
@@ -32,9 +31,9 @@ export const connectUsers = async (user, inviteToken) => {
     if (!friend) {
         throw new Error(`User with ID "${friendInvite.userId}" does not exist`);
     }
-    const addFriend = createFactory(users.doc(user.id).collection('friends'));
+    const addFriend = createFactory(() => collection().doc(user.id).collection('friends'));
     await addFriend(friend.id, friend);
 
-    const addUserAsFriend = createFactory(users.doc(friend.id).collection('friends'));
+    const addUserAsFriend = createFactory(() => collection().doc(friend.id).collection('friends'));
     await addUserAsFriend(user.id, user);
 };

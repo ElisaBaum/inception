@@ -1,25 +1,23 @@
 import * as admin from 'firebase-admin';
-import {getMovie, Movie} from '@baum/ic-common/movies';
 import {createFactory, getFactory, listFactory} from '../common/firestore';
+import {mediaTypes} from './types';
 
-const firestore = admin.firestore();
-const collection = firestore.collection('media');
+const collection = () => admin.firestore().collection('ratings');
 
-type Firestore = Movie;
+interface Media {
+    id: string;
+}
 
-export const getMedia = getFactory<Firestore>(collection);
+export const getMedia = getFactory<Media>(collection);
 export const createMedia = createFactory(collection);
-export const getMediaList = listFactory<Firestore>(collection);
+export const getMediaList = listFactory<Media>(collection);
 
-export const getMediaFromExt = (type: string, extId: string) => {
-    const extMediaCaller = {
-        Movie: getMovie,
-    }[type];
-
-    if (!extMediaCaller) {
-        throw new Error(`Media Type "${type}" not supported`);
+export const getMediaFromExt = async (type: string, extId: string) => {
+    const mediaType = mediaTypes[type];
+    if (!mediaType) {
+        throw new Error(`Media Type ${type} does not exist`);
     }
-    return extMediaCaller(extId);
+    return mediaType.getMedia(extId);
 };
 
 export const getMediaByExtId = (type: string, extId: string) =>
@@ -27,7 +25,10 @@ export const getMediaByExtId = (type: string, extId: string) =>
 
 export const createMediaFromExt = async (type: string, extId: string) => {
     const {id: unusedExtId, ...data} = await getMediaFromExt(type, extId);
-    return createMedia(createIdFromExtId(type, extId), {type, ...data});
+    return createMedia(createIdFromExtId(type, extId), {
+        type,
+        ...data,
+    });
 };
 
 export const createIdFromExtId = (type: string, extId: string) => `${type}#${extId}`;
