@@ -2,7 +2,7 @@ import * as admin from 'firebase-admin';
 import {createFactory, getFactory, listFactory} from '../common/firestore';
 import {mediaTypes} from './types';
 
-const collection = () => admin.firestore().collection('ratings');
+const collection = () => admin.firestore().collection('media');
 
 interface Media {
     id: string;

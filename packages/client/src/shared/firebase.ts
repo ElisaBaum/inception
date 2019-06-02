@@ -15,6 +15,7 @@ const auth = app.auth();
 const googleProvider = new app.auth.GoogleAuthProvider();
 
 export const signInWithGoogle = () => auth.signInWithPopup(googleProvider);
+export const signOut = () => auth.signOut();
 
 import ApolloClient, {gql} from 'apollo-boost';
 
@@ -24,7 +25,7 @@ auth.onAuthStateChanged(async user => {
             const token = await user.getIdToken();
 
             const client = new ApolloClient({
-                uri: 'http://localhost:5001/inception-1b143/us-central1/api/graphql',
+                uri: 'https://us-central1-inception-1b143.cloudfunctions.net/api/graphql',
                 headers: {
                     Authorization: `Bearer ${token}`,
                 }
