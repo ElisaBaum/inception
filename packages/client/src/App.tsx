@@ -13,11 +13,11 @@ import {Avatar} from './shared/Avatar/Avatar';
 import {Badge} from './shared/Badge/Badge';
 import {Section} from './shared/Section/Section';
 import {Nav} from './shared/Nav/Nav';
-import {Bubble} from "./shared/Bubble/Bubble";
+import {Bubble} from './shared/Bubble/Bubble';
 
 import elisaAvatar from './elisa_avatar.JPG';
 import robinAvatar from './robin_avatar.png';
-import {WhiteIcon} from "./shared/Icon/Icon";
+import {WhiteIcon} from './shared/Icon/Icon';
 
 export const App = () => (
     <MuiThemeProvider theme={defaultTheme}>
@@ -118,7 +118,8 @@ export const App = () => (
                     </Bubble>
                 </Grid>
                 <Grid item>
-                    <Badge forSize={'large'} badgeContent={<WhiteIcon fontSize="inherit" style={{fontWeight: 'bold'}}>{'check'}</WhiteIcon>}>
+                    <Badge forSize={'large'} badgeContent={<WhiteIcon fontSize="inherit"
+                                                                      style={{fontWeight: 'bold'}}>{'check'}</WhiteIcon>}>
                         <Bubble color={'#495672'} size="large">
                             <WhiteIcon fontSize="small">{'music_note'}</WhiteIcon>
                         </Bubble>

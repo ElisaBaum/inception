@@ -5,7 +5,7 @@ import withStyles, {WithStyles} from '@material-ui/core/styles/withStyles';
 import {Theme} from '@material-ui/core/styles/createMuiTheme';
 
 import {H2} from '../Headline/H2';
-import {H3} from "../Headline/H3";
+import {H3} from '../Headline/H3';
 
 const styles = (theme: Theme) => ({
     root: {
@@ -13,7 +13,6 @@ const styles = (theme: Theme) => ({
         marginBottom: theme.spacing.unit,
     },
     subheader: {
-        fontSize: '.85rem',
         marginTop: .5 * theme.spacing.unit,
     },
     avatar: {
@@ -39,17 +38,22 @@ export interface CardHeaderProps extends WithStyles<typeof styles> {
     action?: React.ReactNode;
 }
 
-export const CardHeader = withStyles(styles)(({title, subtitle, action, icon, classes: {icon: iconClass, titleContainer, ...classes}}: CardHeaderProps) => (
-    <MuiCardHeader classes={classes}
-                   title={
-                       <div className={titleContainer}>
-                           {icon && <Icon className={iconClass} fontSize="small">{icon}</Icon>}
-                           <span>
-                               <H2>{title}</H2>
-                               {subtitle && <H3 className={classes.subheader}>{subtitle}</H3>}
-                           </span>
-                       </div>
-                   }
-                   action={action}
-    />
-));
+const Title = ({title, subtitle, icon, classes: {icon: iconClass, titleContainer, subheader}}: CardHeaderProps) => (
+    <div className={titleContainer}>
+        {icon && <Icon className={iconClass} fontSize="small">{icon}</Icon>}
+        <span>
+            <H2>{title}</H2>
+            {subtitle && <H3 className={subheader}>{subtitle}</H3>}
+        </span>
+    </div>
+);
+
+export const CardHeader = withStyles(styles)((props: CardHeaderProps) => {
+    const {action, classes: {icon: iconClass, titleContainer, ...muiClasses}} = props;
+    return (
+        <MuiCardHeader classes={muiClasses}
+                       title={<Title {...props}/>}
+                       action={action}
+        />
+    );
+});

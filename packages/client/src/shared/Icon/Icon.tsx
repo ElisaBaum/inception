@@ -5,12 +5,12 @@ import * as React from 'react';
 
 const styles = (color) => () => ({
     root: {
-        color: color
+        color
     }
 });
 
-const Icon2 = (color) => withStyles(styles(color))(MuiIcon) as React.ComponentType<IconProps>;
+const DefaultIcon = (color) => withStyles(styles(color))(MuiIcon) as React.ComponentType<IconProps>;
 
-export const Icon = Icon2(defaultColor);
+export const Icon = DefaultIcon(defaultColor);
 
-export const WhiteIcon = Icon2('#ffffff');
+export const WhiteIcon = DefaultIcon('#ffffff');
