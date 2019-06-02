@@ -2,7 +2,7 @@ import * as React from 'react';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import {Grid} from '@material-ui/core';
 
-import {defaultTheme, secondaryColor} from './shared/themes/defaultTheme';
+import {defaultColor, defaultTheme, secondaryColor} from './shared/themes/defaultTheme';
 import {Button} from './shared/Button/Button';
 import {TextField} from './shared/TextField/TextField';
 import {CardFooter} from './shared/Card/CardFooter';
@@ -17,6 +17,7 @@ import {Bubble} from "./shared/Bubble/Bubble";
 
 import elisaAvatar from './elisa_avatar.JPG';
 import robinAvatar from './robin_avatar.png';
+import {WhiteIcon} from "./shared/Icon/Icon";
 
 export const App = () => (
     <MuiThemeProvider theme={defaultTheme}>
@@ -88,6 +89,45 @@ export const App = () => (
                     </CardFooter>
                 </Card>
             </Grid>
+        </Section>
+        <Section title={'Settings'}>
+            <Grid item xs={12} container spacing={16}>
+                <Grid item>
+                    <Bubble color={defaultColor} size="large">
+                        <WhiteIcon fontSize="small">{'movie_creation'}</WhiteIcon>
+                    </Bubble>
+                </Grid>
+                <Grid item>
+                    <Bubble color={defaultColor} size="large">
+                        <WhiteIcon fontSize="small">{'book'}</WhiteIcon>
+                    </Bubble>
+                </Grid>
+                <Grid item>
+                    <Bubble color={defaultColor} size="large">
+                        <WhiteIcon fontSize="small">{'dashboard'}</WhiteIcon>
+                    </Bubble>
+                </Grid>
+                <Grid item>
+                    <Bubble color={defaultColor} size="large">
+                        <WhiteIcon fontSize="small">{'gamepad'}</WhiteIcon>
+                    </Bubble>
+                </Grid>
+                <Grid item>
+                    <Bubble color={defaultColor} size="large">
+                        <WhiteIcon fontSize="small">{'location_on'}</WhiteIcon>
+                    </Bubble>
+                </Grid>
+                <Grid item>
+                    <Badge forSize={'large'} badgeContent={<WhiteIcon fontSize="inherit" style={{fontWeight: 'bold'}}>{'check'}</WhiteIcon>}>
+                        <Bubble color={'#495672'} size="large">
+                            <WhiteIcon fontSize="small">{'music_note'}</WhiteIcon>
+                        </Bubble>
+                    </Badge>
+                </Grid>
+            </Grid>
+        </Section>
+        <Section>
+            <div/>
         </Section>
     </MuiThemeProvider>
 );
