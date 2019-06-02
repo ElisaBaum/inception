@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 221 221" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="microsoft" fill-rule="nonzero">
+            <polygon id="Shape" fill="#F1511B" points="104.868 104.868 0 104.868 0 0 104.868 0"></polygon>
+            <polygon id="Shape" fill="#80CC28" points="220.654 104.868 115.788 104.868 115.788 0 220.654 0"></polygon>
+            <polygon id="Shape" fill="#00ADEF" points="104.865 220.695 0 220.695 0 115.828 104.865 115.828"></polygon>
+            <polygon id="Shape" fill="#FBBC09" points="220.654 220.695 115.788 220.695 115.788 115.828 220.654 115.828"></polygon>
+        </g>
+    </g>
+</svg>
