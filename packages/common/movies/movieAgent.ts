@@ -5,6 +5,7 @@ import {MovieSearchResult} from './MovieSearchResult';
 const movieHttpClient = axios.create({
     baseURL: 'https://api.themoviedb.org/3',
     params: {
+        // TODO remove default value from version control
         api_key: process.env.MOVIE_API_KEY || 'd349e6f5d3d53d98fe73da2c7191c781',
     }
 });

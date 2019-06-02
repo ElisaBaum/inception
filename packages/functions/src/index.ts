@@ -93,6 +93,6 @@ apolloServer.applyMiddleware({app});
 
 app.use(strongErrorHandler()); // TODO Needed ? Seems like apollo does all the work
 
-export const api = functions.region().https.onRequest(app);
+export const api = functions.https.onRequest(app);
 
 export * from './ratings/ratingFunctions';
