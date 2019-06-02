@@ -1,4 +1,4 @@
-import {getFriendInvite} from './friendInvites';
+import {getFriendInvite, removeFriendInvite} from './friendInvites';
 import {createFactory, listFactory} from '../../common/firestore';
 import {getUser, collection as userCollection, User} from '../userService';
 
@@ -23,5 +23,5 @@ export const connectUsers = async (user, inviteToken) => {
     const addUserAsFriend = createFactory(() => collection(friend.id));
     await addUserAsFriend(user.id, user);
 
-    await userCollection().doc(inviteToken).delete();
+    await removeFriendInvite(inviteToken);
 };

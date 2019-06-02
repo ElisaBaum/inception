@@ -34,54 +34,54 @@ auth.onAuthStateChanged(async user => {
             await client.mutate({
                 mutation: gql`
                     mutation {
-                        createUserByFriendInvite(name: "Robin", inviteToken: "test") {
+                        connectMe(inviteToken: "test") {
                             id
                         }
                     }
                 `
             });
-            await client.query({
-                query: gql`
-                    query {
-                        me {
-                            id,
-                            name
-                        }
-                    }
-                `
-            });
-            await client.mutate({
-                mutation: gql`
-                    mutation {
-                        upsertRatingByExtId(type: "Movie", extMediaId: "550", rating: 10) {
-                            id
-                        }
-                    }
-                `
-            });
-            await client.query({
-                query: gql`
-                    query {
-                        me {
-                            id
-                            name
-                            ratings {
-                                id
-                                rating
-                                review
-                                timestamp
-                                media {
-                                    __typename ...on Movie {
-                                        id
-                                        title
-                                        releaseDate
-                                    }
-                                }
-                            }
-                        }
-                    }
-                `
-            });
+            // await client.query({
+            //     query: gql`
+            //         query {
+            //             me {
+            //                 id,
+            //                 name
+            //             }
+            //         }
+            //     `
+            // });
+            // await client.mutate({
+            //     mutation: gql`
+            //         mutation {
+            //             upsertRatingByExtId(type: "Movie", extMediaId: "550", rating: 10) {
+            //                 id
+            //             }
+            //         }
+            //     `
+            // });
+            // await client.query({
+            //     query: gql`
+            //         query {
+            //             me {
+            //                 id
+            //                 name
+            //                 ratings {
+            //                     id
+            //                     rating
+            //                     review
+            //                     timestamp
+            //                     media {
+            //                         __typename ...on Movie {
+            //                             id
+            //                             title
+            //                             releaseDate
+            //                         }
+            //                     }
+            //                 }
+            //             }
+            //         }
+            //     `
+            // });
         } catch (e) {
             console.error(e);
         }

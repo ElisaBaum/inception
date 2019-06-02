@@ -11,6 +11,7 @@ interface FriendInvite {
 }
 
 export const getFriendInvite = getFactory<FriendInvite>(collection);
+export const removeFriendInvite = token => collection().doc(token).delete();
 export const createFriendInvite = async (userId: string) => {
     const token = nanoid(68);
     const friendInvite = {userId, token, timestamp: admin.firestore.Timestamp.now()};
