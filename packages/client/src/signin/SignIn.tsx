@@ -17,17 +17,17 @@ export const SignIn = () => (
             </Button>
         </Grid>
         <Grid item xs={12}>
-            <Button fullWidth color="primary" iconLeft={<Facebook/>} style={{background: '#3C5A99'}}>
+            <Button fullWidth color="secondary" iconLeft={<Facebook/>}>
                 Sign in with Facebook
             </Button>
         </Grid>
         <Grid item xs={12}>
-            <Button fullWidth color="primary" iconLeft={<Twitter/>} style={{background: '#1DA1F2'}}>
+            <Button fullWidth color="secondary" iconLeft={<Twitter/>}>
                 Sign in with Twitter
             </Button>
         </Grid>
         <Grid item xs={12}>
-            <Button fullWidth color="primary" iconLeft={<Github/>} style={{background: '#201f1f'}}>
+            <Button fullWidth color="secondary" iconLeft={<Github/>}>
                 Sign in with GitHub
             </Button>
         </Grid>
