@@ -11,6 +11,9 @@ import {mediaResolvers} from './media/mediaResolvers';
 import {ratingResolvers} from './ratings/ratingsResolvers';
 import {addUidToContext} from './common/authentication';
 
+// Workaround for https://github.com/firebase/firebase-functions/issues/437
+process.env.GCLOUD_PROJECT = JSON.parse(process.env.FIREBASE_CONFIG as string).projectId;
+
 admin.initializeApp();
 
 // TODO move to their own modules

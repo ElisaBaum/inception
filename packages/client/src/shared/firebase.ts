@@ -31,15 +31,15 @@ auth.onAuthStateChanged(async user => {
                 }
             });
 
-            await client.mutate({
-                mutation: gql`
-                    mutation {
-                        connectMe(inviteToken: "test") {
-                            id
-                        }
-                    }
-                `
-            });
+            // await client.mutate({
+            //     mutation: gql`
+            //         mutation {
+            //             connectMe(inviteToken: "test") {
+            //                 id
+            //             }
+            //         }
+            //     `
+            // });
             // await client.query({
             //     query: gql`
             //         query {
@@ -50,15 +50,15 @@ auth.onAuthStateChanged(async user => {
             //         }
             //     `
             // });
-            // await client.mutate({
-            //     mutation: gql`
-            //         mutation {
-            //             upsertRatingByExtId(type: "Movie", extMediaId: "550", rating: 10) {
-            //                 id
-            //             }
-            //         }
-            //     `
-            // });
+            await client.mutate({
+                mutation: gql`
+                    mutation {
+                        upsertRatingByExtId(type: "Movie", extMediaId: "420817", rating: 8) {
+                            id
+                        }
+                    }
+                `
+            });
             // await client.query({
             //     query: gql`
             //         query {
