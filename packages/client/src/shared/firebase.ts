@@ -53,7 +53,7 @@ auth.onAuthStateChanged(async user => {
             await client.mutate({
                 mutation: gql`
                     mutation {
-                        upsertRatingByExtId(type: "Movie", extMediaId: "299534", rating: 9) {
+                        upsertRatingByExtId(type: "Movie", extMediaId: "299536", rating: 8) {
                             id
                         }
                     }
