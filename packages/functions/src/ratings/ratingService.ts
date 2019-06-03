@@ -1,7 +1,7 @@
 import * as admin from 'firebase-admin';
 import {listFactory} from '../common/firestore';
-import {createMediaFromExt, getMediaByExtId} from '../media/mediaService';
-import {Rating, UpsertFromExtRatingData, UpsertRatingData} from './ratingTypes';
+import {createMediaFromExt, getMediaByExtId, mapToPreviewMedia} from '../media/mediaService';
+import {Rating, UpsertFromExtRatingData, UpsertRatingData} from './Rating';
 import Timestamp = admin.firestore.Timestamp;
 
 const collection = () => admin.firestore().collection('ratings');
@@ -12,8 +12,9 @@ export const upsertRatingByExtId = async ({extMediaId, ...data}: UpsertFromExtRa
     const media = (await getMediaByExtId(data.type, extMediaId)) ||
         (await createMediaFromExt(data.type, extMediaId));
     const id = createIdFromExtId(media.id, data.user.id);
+    const previewMedia = mapToPreviewMedia(media);
 
-    return upsertRating(id, {media, ...data});
+    return upsertRating(id, {media: previewMedia, ...data});
 };
 
 export const upsertRating = async (id: string, data: UpsertRatingData): Promise<Rating> => {

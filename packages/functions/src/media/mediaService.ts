@@ -1,23 +1,28 @@
 import * as admin from 'firebase-admin';
 import {createFactory, getFactory, listFactory} from '../common/firestore';
 import {mediaTypes} from './types';
+import {Media} from './Media';
 
 const collection = () => admin.firestore().collection('media');
-
-interface Media {
-    id: string;
-}
 
 export const getMedia = getFactory<Media>(collection);
 export const createMedia = createFactory(collection);
 export const getMediaList = listFactory<Media>(collection);
 
-export const getMediaFromExt = async (type: string, extId: string) => {
+export const getMediaFromExt = (type: string, extId: string) => {
     const mediaType = mediaTypes[type];
     if (!mediaType) {
         throw new Error(`Media Type ${type} does not exist`);
     }
     return mediaType.getMedia(extId);
+};
+
+export const mapToPreviewMedia = (media: Media) => {
+    const mediaType = mediaTypes[media.type];
+    if (!mediaType) {
+        throw new Error(`Media Type ${media.type} does not exist`);
+    }
+    return mediaType.mapToPreviewMedia(media);
 };
 
 export const getMediaByExtId = (type: string, extId: string) =>

@@ -4,6 +4,7 @@ import {basename, join} from 'path';
 interface MediaType {
     typeResolvers: object;
     getMedia(id: string): Promise<{ id: string }>;
+    mapToPreviewMedia(media: any): any;
 }
 
 export const mediaTypes = (() => {

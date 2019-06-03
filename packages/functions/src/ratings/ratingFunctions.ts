@@ -1,26 +1,15 @@
 import * as functions from 'firebase-functions';
-import {Rating} from './ratingTypes';
+import {Rating} from './Rating';
 import {getFriends} from '../users/friends/friends';
-import {addRatingToStream, updateRatingInStream} from '../users/stream/stream';
+import {upsertRatingInStream} from '../users/stream/stream';
 
-export const addRatingToFriendsStream = functions.firestore
+export const upsertRatingToFriendsStream = functions.firestore
     .document('ratings/{ratingId}')
-    .onCreate(async (snap, context) => {
-        const rating = snap.data() as unknown as Rating | undefined;
+    .onWrite(async (snap, context) => {
+        const rating = snap.after.data() as unknown as Rating | undefined;
 
         if (rating) {
             const friends = await getFriends(rating.user.id);
-            await Promise.all(friends.map(friend => addRatingToStream(friend.id, rating)));
-        }
-    });
-
-export const updateRatingInFriendsStream = functions.firestore
-    .document('ratings/{ratingId}')
-    .onUpdate(async (change, context) => {
-        const rating = change.after.data() as unknown as Rating | undefined;
-
-        if (rating) {
-            const friends = await getFriends(rating.user.id);
-            await Promise.all(friends.map(friend => updateRatingInStream(friend.id, rating)));
+            await Promise.all(friends.map(friend => upsertRatingInStream(friend.id, rating)));
         }
     });
