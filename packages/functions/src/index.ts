@@ -13,6 +13,7 @@ import {addUidToContext} from './common/authentication';
 
 // Workaround for https://github.com/firebase/firebase-functions/issues/437
 process.env.GCLOUD_PROJECT = JSON.parse(process.env.FIREBASE_CONFIG as string).projectId;
+process.env.X_GOOGLE_NEW_FUNCTION_SIGNATURE = 'true';
 
 admin.initializeApp();
 
