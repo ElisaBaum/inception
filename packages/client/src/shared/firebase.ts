@@ -21,69 +21,65 @@ import ApolloClient, {gql} from 'apollo-boost';
 
 auth.onAuthStateChanged(async user => {
     if (user) {
-        try {
-            const token = await user.getIdToken();
+        const token = await user.getIdToken();
 
-            const client = new ApolloClient({
-                uri: 'https://us-central1-inception-1b143.cloudfunctions.net/api/graphql',
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                }
-            });
+        const client = new ApolloClient({
+            uri: 'https://us-central1-inception-1b143.cloudfunctions.net/api/graphql',
+            headers: {
+                Authorization: `Bearer ${token}`,
+            }
+        });
 
-            // await client.mutate({
-            //     mutation: gql`
-            //         mutation {
-            //             connectMe(inviteToken: "test") {
-            //                 id
-            //             }
-            //         }
-            //     `
-            // });
-            // await client.query({
-            //     query: gql`
-            //         query {
-            //             me {
-            //                 id,
-            //                 name
-            //             }
-            //         }
-            //     `
-            // });
-            await client.mutate({
-                mutation: gql`
-                    mutation {
-                        upsertRatingByExtId(type: "Movie", extMediaId: "299536", rating: 8) {
-                            id
-                        }
+        // await client.mutate({
+        //     mutation: gql`
+        //         mutation {
+        //             connectMe(inviteToken: "test") {
+        //                 id
+        //             }
+        //         }
+        //     `
+        // });
+        // await client.query({
+        //     query: gql`
+        //         query {
+        //             me {
+        //                 id,
+        //                 name
+        //             }
+        //         }
+        //     `
+        // });
+        await client.mutate({
+            mutation: gql`
+                mutation {
+                    upsertRatingByExtId(type: "Movie", extMediaId: "299536", rating: 8) {
+                        id
                     }
-                `
-            });
-            // await client.query({
-            //     query: gql`
-            //         query {
-            //             me {
-            //                 id
-            //                 name
-            //                 ratings {
-            //                     id
-            //                     rating
-            //                     review
-            //                     timestamp
-            //                     media {
-            //                         __typename ...on Movie {
-            //                             id
-            //                             title
-            //                             releaseDate
-            //                         }
-            //                     }
-            //                 }
-            //             }
-            //         }
-            //     `
-            // });
-        } catch (e) {
-            console.error(e);
-        }
+                }
+            `
+        });
+        // await client.query({
+        //     query: gql`
+        //         query {
+        //             me {
+        //                 id
+        //                 name
+        //                 ratings {
+        //                     id
+        //                     rating
+        //                     review
+        //                     timestamp
+        //                     media {
+        //                         __typename ...on Movie {
+        //                             id
+        //                             title
+        //                             releaseDate
+        //                         }
+        //                     }
+        //                 }
+        //             }
+        //         }
+        //     `
+        // });
     }
 });

@@ -13,15 +13,11 @@ export const authenticated = next => async (root, args, context, info) => {
 };
 
 export const addUidToContext = async ({req}) => {
-    try {
-        const authHeader = req.get('authorization');
-        if (authHeader) {
-            const [_, tokenId] = authHeader.split('Bearer ');
-            const {uid} = await admin.auth().verifyIdToken(tokenId);
-            return {uid};
-        }
-    } catch (e) {
-        console.log(e);
+    const authHeader = req.get('authorization');
+    if (authHeader) {
+        const [_, tokenId] = authHeader.split('Bearer ');
+        const {uid} = await admin.auth().verifyIdToken(tokenId);
+        return {uid};
     }
-    return {}; // OR does throw verifyIdToken anyway??
+    return {};
 };
