@@ -1,9 +1,9 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-import {App} from './src/App';
+import {AppWithProviders} from './src/App';
 
 ReactDOM.render(
-    <App />,
+    <AppWithProviders />,
     document.getElementById('root') as HTMLElement
 );
