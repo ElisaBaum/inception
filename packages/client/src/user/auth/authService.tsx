@@ -1,7 +1,5 @@
 import React from 'react';
-import {firebase} from '../shared/firebase';
-import {store} from '../store';
-import {setUnAuthenticated, setTokenId, authenticate} from './userActionsCreators';
+import {firebase} from '../../core/firebase';
 
 const auth = firebase.auth();
 
@@ -16,13 +14,4 @@ const authProviders = {
 
 export const signInWithProvider = (provider: Provider) => auth.signInWithPopup(authProviders[provider]);
 export const signOut = () => auth.signOut();
-
-auth.onAuthStateChanged(async user => {
-    if (user) {
-        const tokenId = await user.getIdToken(true);
-        store.dispatch(setTokenId(tokenId));
-        store.dispatch(authenticate());
-    } else {
-        store.dispatch(setUnAuthenticated());
-    }
-});
+export const onAuthStateChanged = auth.onAuthStateChanged.bind(auth) as typeof auth.onAuthStateChanged;

@@ -5,7 +5,7 @@ import {onError} from 'apollo-link-error';
 import {ApolloLink} from 'apollo-link';
 import {setContext} from 'apollo-link-context';
 import {getTokenId} from '../user/userSelectors';
-import {store} from '../store';
+import {store} from './store';
 
 export const client = new ApolloClient({
     link: ApolloLink.from([

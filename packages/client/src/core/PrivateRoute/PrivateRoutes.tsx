@@ -19,8 +19,16 @@ export const PrivateRoute = withUser(({user, tokenId, authStatus, component: Com
                     return (<Component {...props} />);
                 }
                 if (authStatus === 'unauthenticated') {
+                    const friendInvite = true;
                     if (tokenId) {
-                        return <Redirect to={{pathname: '/no-invite'}}/>;
+                        if (friendInvite) {
+                            return <Redirect to={{
+                                pathname: '/signup',
+                                state: {from: props.location}
+                            }}/>;
+                        } else {
+                            return <Redirect to={'/noinvite'}/>;
+                        }
                     }
                     return <Redirect
                         to={{

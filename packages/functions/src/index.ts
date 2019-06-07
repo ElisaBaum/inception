@@ -75,9 +75,7 @@ const typeDefs = gql`
             inviteToken: String!
         ): User
 
-        connectMe(
-            inviteToken: String!
-        ): User
+        connectMe(inviteToken: String!): User
     }
 `;
 

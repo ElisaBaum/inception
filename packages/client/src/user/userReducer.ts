@@ -1,11 +1,12 @@
-import {SET_TOKEN_ID, SET_UNAUTHENTICATED, SET_USER, SIGN_OUT, START_SIGN_IN} from './userActions';
+import {SET_FRIEND_INVITE_FAIL, SET_TOKEN_ID, SET_UNAUTHENTICATED, SET_USER, SIGN_OUT, START_SIGN_IN} from './userActions';
 
 export type AuthStatus = 'authenticated' | 'pending' | 'unauthenticated';
+export type AuthStatus2 = 'pending' | 'signedIn' | 'authenticated' | 'unauthenticated';
 
 export interface UserState {
     user?: any;
     tokenId?: string;
-    authError?: any;
+    errors?: any;
     authStatus: AuthStatus;
 }
 
@@ -21,7 +22,13 @@ export default function(state = initialState, action): UserState {
         case SET_UNAUTHENTICATED:
             return {
                 ...state,
-                authError: action.payload,
+                errors: action.payload,
+                authStatus: 'unauthenticated',
+            };
+        case SET_FRIEND_INVITE_FAIL:
+            return {
+                ...state,
+                errors: action.payload,
                 authStatus: 'unauthenticated',
             };
         case SIGN_OUT:

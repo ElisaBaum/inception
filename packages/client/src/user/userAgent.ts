@@ -1,7 +1,7 @@
-import {client} from '../shared/apollo';
+import {client} from '../core/apollo';
 import gql from 'graphql-tag';
 
-export const queryMe = () => client.query<{me: {id: string; name: string}}>({
+export const me = () => client.query<{me: {id: string; name: string}}>({
     query: gql`
         query {
             me {
@@ -10,4 +10,29 @@ export const queryMe = () => client.query<{me: {id: string; name: string}}>({
             }
         }
     `
+});
+
+export const createUserByFriendInvite = ({name, inviteToken}) => client.mutate<{createUserByFriendInvite: {id: string; name: string}}>({
+    mutation: gql`
+        mutation ($name: String!, $inviteToken: String!) {
+            createUserByFriendInvite(name: $name, inviteToken: $inviteToken) {
+                id
+                name
+            }
+        }
+    `,
+    variables: {name, inviteToken},
+});
+
+
+export const connectMe = ({inviteToken}) => client.mutate<{user: {id: string; name: string}}>({
+    mutation: gql`
+        mutation ($inviteToken: String!) {
+            connectMe(inviteToken: $inviteToken) {
+                id
+                name
+            }
+        }
+    `,
+    variables: {inviteToken},
 });

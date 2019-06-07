@@ -14,7 +14,7 @@ import {withUser} from '../withUser';
 export const SignIn = withUser(({user, signIn, location}) => {
 
     if (user) {
-        return <Redirect to={location.state.from}/>;
+        return <Redirect to={location.state ? location.state.from : '/'}/>;
     }
     return (
         <Section>
