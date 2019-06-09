@@ -31,7 +31,6 @@ export const client = new ApolloClient({
         }),
         new HttpLink({
             uri: 'https://us-central1-inception-1b143.cloudfunctions.net/api/graphql',
-            // credentials: 'same-origin'
         }),
     ]),
     cache: new InMemoryCache()

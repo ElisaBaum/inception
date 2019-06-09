@@ -7,6 +7,7 @@ import {PrivateRoute} from './core/PrivateRoute/PrivateRoutes';
 import {withUser} from './user/withUser';
 import {Nav} from './shared/Nav/Nav';
 import {SignUp} from './user/signup/SignUp';
+import {FriendConnect} from './user/friends/friendConnect/FriendConnect';
 
 interface NavigationProps extends RouteProps {
     user?: any;
@@ -26,6 +27,7 @@ export const appRoutes: any[] = [
     {route: PublicRoute, path: '/signup', component: SignUp, data: {title: 'Sign Up'}},
     {route: PublicRoute, path: '/no-invite', render: () => (<div>No invite</div>), data: {title: 'No Invite'}},
     {route: PrivateRoute, path: '/', exact: true, component: Stream, data: {title: 'Welcome'}},
+    {route: PrivateRoute, path: '/friend-connect', component: FriendConnect, data: {title: 'Friend Connect'}},
 ];
 
 export const getRoute = path => appRoutes.find(route => route.path === path);

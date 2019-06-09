@@ -7,20 +7,24 @@ import {store} from './core/store';
 import {withUser} from './user/withUser';
 import {AuthStatus} from './user/userReducer';
 import {AppRoutes} from './AppRoutes';
-import {initUser} from './user/userActionsCreators';
+import {initUser} from './user/userActionCreators';
+import {Modals} from './core/modals/Modals';
+import {friendConnect} from './user/friends/friendConnect/friendConnectModal';
+import {SplashScreen} from './core/splashscreen/SplashScreen';
+
+store.dispatch(initUser());
 
 interface AppProps {
     authStatus: AuthStatus;
 }
 
-store.dispatch(initUser());
-
 export const App = withUser(({authStatus}: AppProps) => {
-    if (authStatus === 'pending') {
-        return (<div>Splash</div>);
-    }
     return (
-        <AppRoutes/>
+        <>
+            <AppRoutes/>
+            <Modals componentMap={{friendConnect}} />
+            {authStatus === 'pending' && (<SplashScreen />)}
+        </>
     );
 });
 

@@ -10,15 +10,16 @@ import Twitter from './icons/Twitter.svg';
 import Microsoft from './icons/Microsoft.svg';
 import {withUser} from '../withUser';
 import {Redirect} from '../../core/Redirect/Redirect';
+import {AuthStatus} from '../userReducer';
 
 interface SignInProps {
     user: any;
+    authStatus: AuthStatus;
     location: { state?: { from: string } };
     signIn(provider: 'google' | 'facebook');
 }
 
-export const SignIn = withUser(({user, signIn, location}: SignInProps) => {
-
+export const SignIn = withUser(({user, authStatus, signIn, location}: SignInProps) => {
     if (user) {
         return <Redirect to={location.state ? location.state.from : '/'}/>;
     }

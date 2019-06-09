@@ -1,10 +1,18 @@
-import {SET_FRIEND_INVITE_FAIL, SET_TOKEN_ID, SET_UNAUTHENTICATED, SET_USER, SIGN_OUT, START_SIGN_IN} from './userActions';
+import {
+    SET_FRIEND_FROM_CURRENT_INVITE,
+    SET_TOKEN_ID,
+    SET_UNAUTHENTICATED,
+    SET_USER,
+    SIGN_OUT,
+    START_SIGN_IN,
+    START_SIGN_UP
+} from './userActions';
 
-export type AuthStatus = 'authenticated' | 'pending' | 'unauthenticated';
-export type AuthStatus2 = 'pending' | 'signedIn' | 'authenticated' | 'unauthenticated';
+export type AuthStatus = 'authenticated' | 'pending' | 'loading' | 'unauthenticated';
 
 export interface UserState {
     user?: any;
+    friendFromCurrentInvite?: any;
     tokenId?: string;
     errors?: any;
     authStatus: AuthStatus;
@@ -15,9 +23,10 @@ const initialState: UserState = {authStatus: 'pending'};
 export default function(state = initialState, action): UserState {
     switch (action.type) {
         case START_SIGN_IN:
+        case START_SIGN_UP:
             return {
                 ...state,
-                authStatus: 'pending',
+                authStatus: 'loading',
             };
         case SET_UNAUTHENTICATED:
             return {
@@ -25,11 +34,10 @@ export default function(state = initialState, action): UserState {
                 errors: action.payload,
                 authStatus: 'unauthenticated',
             };
-        case SET_FRIEND_INVITE_FAIL:
+        case SET_FRIEND_FROM_CURRENT_INVITE:
             return {
                 ...state,
-                errors: action.payload,
-                authStatus: 'unauthenticated',
+                friendFromCurrentInvite: action.payload,
             };
         case SIGN_OUT:
             return {

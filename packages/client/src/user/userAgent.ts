@@ -25,7 +25,7 @@ export const createUserByFriendInvite = ({name, inviteToken}) => client.mutate<{
 });
 
 
-export const connectMe = ({inviteToken}) => client.mutate<{user: {id: string; name: string}}>({
+export const connectMe = ({inviteToken}) => client.mutate<{connectMe: {id: string; name: string}}>({
     mutation: gql`
         mutation ($inviteToken: String!) {
             connectMe(inviteToken: $inviteToken) {
