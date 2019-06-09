@@ -53,7 +53,7 @@ export const postAuthenticate = () => async dispatch => {
         }
     }
 };
-export const init = () => dispatch => {
+export const initUser = () => dispatch => {
     auth.onAuthStateChanged(async user => {
         if (user) {
             const tokenId = await user.getIdToken();

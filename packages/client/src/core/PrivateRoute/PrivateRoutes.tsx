@@ -1,7 +1,8 @@
-import {Redirect, Route, RouteProps} from 'react-router';
+import {Route, RouteProps} from 'react-router';
 import {AuthStatus} from '../../user/userReducer';
 import React, {ComponentType} from 'react';
 import {withUser} from '../../user/withUser';
+import {Redirect} from '../Redirect/Redirect';
 
 interface PrivateRouteProps extends RouteProps {
     user: any;

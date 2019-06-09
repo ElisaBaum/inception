@@ -13,8 +13,10 @@ interface NavigationProps extends RouteProps {
 }
 
 export const Navigation = withUser(withRouter(({user, location}: NavigationProps) => {
+    const pathWithoutQuery = location && location.pathname.split('?')[0];
+    const route = getRoute(pathWithoutQuery);
     return (
-        <Nav title={getRoute(location && location.pathname).data.title}
+        <Nav title={route.data ? route.data.title : ''}
              subTitle={user && user.name}/>
     );
 }));

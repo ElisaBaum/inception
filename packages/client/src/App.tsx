@@ -7,13 +7,13 @@ import {store} from './core/store';
 import {withUser} from './user/withUser';
 import {AuthStatus} from './user/userReducer';
 import {AppRoutes} from './AppRoutes';
-import {init} from './user/userActionsCreators';
+import {initUser} from './user/userActionsCreators';
 
 interface AppProps {
     authStatus: AuthStatus;
 }
 
-store.dispatch(init());
+store.dispatch(initUser());
 
 export const App = withUser(({authStatus}: AppProps) => {
     if (authStatus === 'pending') {

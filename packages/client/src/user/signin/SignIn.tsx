@@ -8,10 +8,16 @@ import Facebook from './icons/Facebook.svg';
 import Github from './icons/Github.svg';
 import Twitter from './icons/Twitter.svg';
 import Microsoft from './icons/Microsoft.svg';
-import {Redirect} from 'react-router';
 import {withUser} from '../withUser';
+import {Redirect} from '../../core/Redirect/Redirect';
 
-export const SignIn = withUser(({user, signIn, location}) => {
+interface SignInProps {
+    user: any;
+    location: { state?: { from: string } };
+    signIn(provider: 'google' | 'facebook');
+}
+
+export const SignIn = withUser(({user, signIn, location}: SignInProps) => {
 
     if (user) {
         return <Redirect to={location.state ? location.state.from : '/'}/>;
