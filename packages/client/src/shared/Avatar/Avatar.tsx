@@ -11,14 +11,18 @@ const styles = (theme) => ({
         width: '42px',
         height: '42px',
     } as CSSProperties,
-    large: {
+    medium: {
         width: '60px',
         height: '60px',
+    } as CSSProperties,
+    large: {
+        width: '120px',
+        height: '120px',
     } as CSSProperties,
 });
 
 type AvatarProps = {
-    size?: 'large';
+    size?: 'medium' | 'large';
 } & WithStyles<typeof styles> & MuiAvatarProps;
 
 export const Avatar = withStyles(styles)(({classes, size, ...props}: AvatarProps) => (
