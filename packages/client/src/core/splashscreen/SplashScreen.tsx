@@ -1,12 +1,25 @@
 import React from 'react';
+import Logo from './logo.svg';
+import withStyles, {CSSProperties} from '@material-ui/core/styles/withStyles';
+import {Theme} from '@material-ui/core';
+import {secondaryColor} from '../../shared/themes/defaultTheme';
 
-export const SplashScreen = () => (
-    <div style={{
+const styles = (theme: Theme) => ({
+    root: {
         position: 'absolute',
-        background: 'white',
+        background: secondaryColor,
         top: 0,
         left: 0,
         width: '100%',
         height: '100%',
-    }}>Splash</div>
-);
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+    } as CSSProperties,
+});
+
+export const SplashScreen = withStyles(styles)(({classes}) => (
+    <div className={classes.root}>
+        <Logo/>
+    </div>
+));
