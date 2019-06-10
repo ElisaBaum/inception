@@ -1,6 +1,6 @@
 import React from 'react';
 import Logo from './logo.svg';
-import withStyles, {CSSProperties} from '@material-ui/core/styles/withStyles';
+import withStyles, {CSSProperties, WithStyles} from '@material-ui/core/styles/withStyles';
 import {Theme} from '@material-ui/core';
 import {secondaryColor} from '../../shared/themes/defaultTheme';
 
@@ -18,7 +18,7 @@ const styles = (theme: Theme) => ({
     } as CSSProperties,
 });
 
-export const SplashScreen = withStyles(styles)(({classes}) => (
+export const SplashScreen = withStyles(styles)(({classes}: WithStyles<typeof styles>) => (
     <div className={classes.root}>
         <Logo/>
     </div>
