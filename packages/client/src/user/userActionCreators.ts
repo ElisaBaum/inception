@@ -52,10 +52,6 @@ export const loadUser = () => async (dispatch) => {
         if (!errors) {
             dispatch(connectUser());
             dispatch(setUser(data.me));
-
-            // TODO remove
-            dispatch(setFriendFromCurrentInvite(data.me));
-            dispatch(openModal({modalKey: 'friendConnect'}));
         } else {
             dispatch(setUnAuthenticated(errors));
         }
