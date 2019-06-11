@@ -30,7 +30,7 @@ const styles = (theme: Theme) => ({
 });
 
 type TextFieldProps = {
-    icon: string;
+    icon?: string;
     placeholder: string;
 } & MuiTextFieldProps & WithStyles<typeof styles>;
 
@@ -41,7 +41,7 @@ export const TextField = withStyles(styles)(({icon, classes, ...props}: TextFiel
         InputLabelProps={{
             disableAnimation: true
         }}
-        InputProps={{
+        InputProps={icon && {
             classes,
             startAdornment: (
                 <InputAdornment position="start">

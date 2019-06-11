@@ -24,4 +24,6 @@ export const connectUsers = async (user, inviteToken) => {
     await addUserAsFriend(user.id, user);
 
     await removeFriendInvite(inviteToken);
+
+    return friend;
 };

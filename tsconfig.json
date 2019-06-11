@@ -6,7 +6,7 @@
     "lib": ["dom", "es6"],
     "jsx": "react",
     "sourceMap": true,
-    "declaration": true,
+    "declaration": false,
     "skipLibCheck": true,
     "strictNullChecks": true,
     "pretty": true,

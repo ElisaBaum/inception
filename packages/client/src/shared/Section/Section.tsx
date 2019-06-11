@@ -1,8 +1,8 @@
 import React, {ReactNode} from 'react';
+import classNames from 'classnames';
 import withStyles, {WithStyles} from '@material-ui/core/styles/withStyles';
-import {Grid} from '@material-ui/core';
 import {H2} from '../Headline/H2';
-import {Button} from '../Button/Button';
+import Grid, {GridProps} from '@material-ui/core/Grid';
 
 const styles = theme => ({
     sectionContainer: {
@@ -14,16 +14,23 @@ const styles = theme => ({
         width: '100%',
         margin: 0,
     },
+    fullHeight: {
+        height: '100%',
+    }
 });
 
 type SectionProps = {
     title?: string;
+    fullHeight?: boolean;
     actions?: ReactNode[];
     children: any[] | any ;
-} & WithStyles<typeof styles>;
+} & WithStyles<typeof styles> & GridProps;
 
-export const Section = withStyles(styles)(({title, classes, children}: SectionProps) => (
-    <Grid container spacing={16} className={classes.sectionContainer}>
+export const Section = withStyles(styles)(({title, classes, children, fullHeight, ...gridProps}: SectionProps) => (
+    <Grid container
+          spacing={16}
+          className={classNames(classes.sectionContainer, fullHeight && classes.fullHeight)}
+          {...gridProps}>
         {title && (
             <Grid item xs={12} container alignItems={'flex-end'} justify={'space-between'}>
                 <Grid item><H2>{title}</H2></Grid>
