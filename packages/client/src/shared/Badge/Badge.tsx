@@ -21,14 +21,18 @@ const styles = (theme: Theme) => ({
         ...baseBadgeCssProperties,
         transform: `scale(1) translate(50%, -35%)`,
     } as CSSProperties,
-    large: {
+    medium: {
         ...baseBadgeCssProperties,
         transform: `scale(1) translate(36%, -20%);`
+    } as CSSProperties,
+    large: {
+        ...baseBadgeCssProperties,
+        transform: `scale(1) translate(-15%, 18%)`
     } as CSSProperties
 });
 
 type BadgeProps = {
-    forSize?: 'large' | 'default';
+    forSize?: 'medium' | 'large' | 'default';
 } & WithStyles<typeof styles> & MuiBadgeProps;
 
 export const Badge = withStyles(styles)(({classes, forSize, ...props}: BadgeProps) => (

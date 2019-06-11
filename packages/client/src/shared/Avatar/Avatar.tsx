@@ -21,11 +21,13 @@ const styles = (theme) => ({
     } as CSSProperties,
 });
 
-type AvatarProps = {
+export type AvatarProps = {
     size?: 'medium' | 'large';
-} & WithStyles<typeof styles> & MuiAvatarProps;
+} & MuiAvatarProps;
 
-export const Avatar = withStyles(styles)(({classes, size, ...props}: AvatarProps) => (
+type InternalAvatarProps = WithStyles<typeof styles> & AvatarProps;
+
+export const Avatar = withStyles(styles)(({classes, size, ...props}: InternalAvatarProps) => (
     <MuiAvatar classes={{root: classes.root}}
                className={classNames(size && classes[size])}
                {...props} />

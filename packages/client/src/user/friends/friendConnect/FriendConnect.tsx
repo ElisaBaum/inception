@@ -1,10 +1,13 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 
 import {withUser} from '../../withUser';
 import {Button} from '../../../shared/Button/Button';
 import {Section} from '../../../shared/Section/Section';
-import {Avatar} from '../../../shared/Avatar/Avatar';
+import {UserAvatar} from '../../userAvatar/UserAvatar';
+import {Badge} from '../../../shared/Badge/Badge';
+import {WhiteIcon} from '../../../shared/Icon/Icon';
 
 interface FriendConnectProps {
     friendFromCurrentInvite: any;
@@ -12,18 +15,34 @@ interface FriendConnectProps {
 }
 
 export const FriendConnect = withUser(({friendFromCurrentInvite, onClose}: FriendConnectProps) => (
-    <Section alignItems={'center'} justify={'flex-start'} fullHeight>
-        <Grid item xs={12} container justify={'center'}>
-            Successfully connected with
+    <Section fullHeight
+             direction={'column'}
+             justify={'space-between'}>
+        <Grid item>
+            <Typography variant={'body1'}
+                        align={'center'}>
+                Successfully connected with
+            </Typography>
         </Grid>
-        <Grid item xs={12} container justify={'center'}>
-            <Avatar size={'large'}>
-                {friendFromCurrentInvite && friendFromCurrentInvite.name.substr(0, 2)}
-            </Avatar>
-            {friendFromCurrentInvite && friendFromCurrentInvite.name}
+        <Grid item
+              container
+              direction={'column'}
+              alignItems={'center'}>
+            <Grid item>
+                <Badge badgeContent={(<WhiteIcon fontSize={'inherit'}>check</WhiteIcon>)}
+                       forSize={'large'}>
+                    <UserAvatar size={'large'}
+                                user={friendFromCurrentInvite}/>
+                </Badge>
+            </Grid>
+            <Grid item>
+                <p>{friendFromCurrentInvite.name}</p>
+            </Grid>
         </Grid>
-        <Grid item xs={12}>
-            <Button fullWidth color={'primary'} onClick={onClose}>
+        <Grid item>
+            <Button fullWidth
+                    color={'primary'}
+                    onClick={onClose}>
                 Got it!
             </Button>
         </Grid>
