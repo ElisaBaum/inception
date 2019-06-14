@@ -21,7 +21,12 @@ export const setTokenId = (payload: string) => ({type: SET_TOKEN_ID, payload});
 export const signIn = (provider: auth.Provider) => async (dispatch) => {
     try {
         dispatch({type: START_SIGN_IN});
-        await auth.signInWithProvider(provider);
+        const {user} = await auth.signInWithProvider(provider);
+
+        // Needs to be called explicitly, because in
+        // some cases the onAuthStateChanged event
+        // fire very late
+        createAuthStateChangedHandler(dispatch)(user);
     } catch (e) {
         dispatch(setUnAuthenticated(e));
     }
@@ -71,14 +76,15 @@ export const connectUser = () => async dispatch => {
         }
     }
 };
-export const initUser = () => dispatch => {
-    auth.onAuthStateChanged(async user => {
-        if (user) {
-            const tokenId = await user.getIdToken();
-            dispatch(setTokenId(tokenId));
-            dispatch(loadUser());
-        } else {
-            dispatch(setUnAuthenticated());
-        }
-    });
+export const initUser = () => dispatch =>
+    auth.onAuthStateChanged(createAuthStateChangedHandler(dispatch));
+
+const createAuthStateChangedHandler = dispatch => async user => {
+    if (user) {
+        const tokenId = await user.getIdToken();
+        dispatch(setTokenId(tokenId));
+        dispatch(loadUser());
+    } else {
+        dispatch(setUnAuthenticated());
+    }
 };
