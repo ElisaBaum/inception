@@ -1,13 +1,12 @@
 import React from 'react';
-import {BrowserRouter as Router, Route as PublicRoute, Switch} from 'react-router-dom';
+import {Route as PublicRoute, Switch} from 'react-router-dom';
 
 import {SignIn} from './user/signin/SignIn';
 import {Stream} from './user/stream/Stream';
 import {PrivateRoute} from './core/PrivateRoute/PrivateRoutes';
 import {SignUp} from './user/signup/SignUp';
-import {Navigation} from './Navigation';
 
-export const appRoutes: any[] = [
+export const routes: any[] = [
     {
         path: '/',
         component: Stream,
@@ -43,19 +42,16 @@ export const appRoutes: any[] = [
     },
 ];
 
-export const getRoute = path => appRoutes.find(route => route.path === path);
+export const getRoute = path => routes.find(route => route.path === path);
 
-export const AppRoutes = () => {
+export const Routes = () => {
     return (
-        <Router>
-            <Navigation/>
-            <Switch>
-                {
-                    appRoutes.map(({route: Route, data, ...props}, index) => (
-                        <Route key={index} {...props} />
-                    ))
-                }
-            </Switch>
-        </Router>
+        <Switch>
+            {
+                routes.map(({route: Route, data, ...props}, index) => (
+                    <Route key={index} {...props} />
+                ))
+            }
+        </Switch>
     );
 };

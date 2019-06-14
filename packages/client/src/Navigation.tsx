@@ -2,7 +2,7 @@ import React from 'react';
 import {RouteComponentProps, withRouter} from 'react-router-dom';
 import IconButton from '@material-ui/core/IconButton';
 
-import {getRoute} from './AppRoutes';
+import {getRoute} from './Routes';
 import {withUser} from './user/withUser';
 import {Nav} from './shared/Nav/Nav';
 import {Icon} from './shared/Icon/Icon';
