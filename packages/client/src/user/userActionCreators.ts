@@ -18,9 +18,9 @@ export const setUnAuthenticated = (payload?) => ({type: SET_UNAUTHENTICATED, pay
 export const setUser = (payload: any) => ({type: SET_USER, payload});
 export const setFriendFromCurrentInvite = (payload: any) => ({type: SET_FRIEND_FROM_CURRENT_INVITE, payload});
 export const setTokenId = (payload: string) => ({type: SET_TOKEN_ID, payload});
-export const signIn = (provider: auth.Provider) => async (dispatch) => {
+export const signIn = (provider: auth.AuthProvider) => async (dispatch) => {
     try {
-        dispatch({type: START_SIGN_IN});
+        dispatch({type: START_SIGN_IN, payload: provider});
         const {user} = await auth.signInWithProvider(provider);
 
         // Needs to be called explicitly, because in
