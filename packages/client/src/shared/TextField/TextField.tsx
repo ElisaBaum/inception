@@ -41,7 +41,7 @@ export const TextField = withStyles(styles)(({icon, classes, ...props}: TextFiel
         InputLabelProps={{
             disableAnimation: true
         }}
-        InputProps={icon && {
+        InputProps={icon !== undefined ? {
             classes,
             startAdornment: (
                 <InputAdornment position="start">
@@ -50,7 +50,7 @@ export const TextField = withStyles(styles)(({icon, classes, ...props}: TextFiel
                     </Icon>
                 </InputAdornment>
             ),
-        }}
+        } : undefined}
         {...props}
     />
 ));
