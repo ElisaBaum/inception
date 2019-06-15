@@ -1,10 +1,8 @@
-import React, {Component, ReactNode} from 'react';
-import {Grid, WithStyles} from '@material-ui/core';
+import React, {ReactNode} from 'react';
+import Grid from '@material-ui/core/Grid';
 import {H1} from '../Headline/H1';
-import withStyles from '@material-ui/core/styles/withStyles';
-import IconButton from '@material-ui/core/IconButton';
+import withStyles, {WithStyles} from '@material-ui/core/styles/withStyles';
 import {H3} from '../Headline/H3';
-import {Icon} from '../Icon/Icon';
 
 const styles = theme => ({
     navContainer: {
