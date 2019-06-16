@@ -10,7 +10,6 @@ import {H3} from '../Headline/H3';
 const styles = (theme: Theme) => ({
     root: {
         padding: 0,
-        marginBottom: theme.spacing.unit,
     },
     subheader: {
         marginTop: .5 * theme.spacing.unit,
@@ -20,6 +19,7 @@ const styles = (theme: Theme) => ({
     },
     action: {
         marginRight: 0,
+        marginTop: 0,
     },
     icon: {
         color: '#495672',
@@ -28,19 +28,22 @@ const styles = (theme: Theme) => ({
     },
     titleContainer: {
         display: 'flex',
+        fontSize: '1.25rem',
     }
 });
 
-export interface CardHeaderProps extends WithStyles<typeof styles> {
+export interface CardHeaderProps {
     title: string;
     subtitle?: string;
     icon?: string;
     action?: React.ReactNode;
 }
 
-const Title = ({title, subtitle, icon, classes: {icon: iconClass, titleContainer, subheader}}: CardHeaderProps) => (
+type CardHeaderInnerProps = CardHeaderProps & WithStyles<typeof styles>;
+
+const Title = ({title, subtitle, icon, classes: {icon: iconClass, titleContainer, subheader}}: CardHeaderInnerProps) => (
     <div className={titleContainer}>
-        {icon && <Icon className={iconClass} fontSize="small">{icon}</Icon>}
+        {icon && <Icon className={iconClass} fontSize="inherit">{icon}</Icon>}
         <span>
             <H2>{title}</H2>
             {subtitle && <H3 className={subheader}>{subtitle}</H3>}
@@ -48,7 +51,7 @@ const Title = ({title, subtitle, icon, classes: {icon: iconClass, titleContainer
     </div>
 );
 
-export const CardHeader = withStyles(styles)((props: CardHeaderProps) => {
+export const CardHeader = withStyles(styles)((props: CardHeaderInnerProps) => {
     const {action, classes: {icon: iconClass, titleContainer, ...muiClasses}} = props;
     return (
         <MuiCardHeader classes={muiClasses}
@@ -56,4 +59,4 @@ export const CardHeader = withStyles(styles)((props: CardHeaderProps) => {
                        action={action}
         />
     );
-});
+}) as React.ComponentType<CardHeaderProps>;

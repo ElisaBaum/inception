@@ -1,7 +1,7 @@
 import * as admin from 'firebase-admin';
+import {Media} from '@baum/ic-common/media/Media';
 import {createFactory, getFactory, listFactory} from '../common/firestore';
 import {mediaTypes} from './types';
-import {Media} from './Media';
 
 const collection = () => admin.firestore().collection('media');
 

@@ -1,7 +1,7 @@
 import {getMovie, Movie} from '@baum/ic-common/movies';
+import {Media} from '@baum/ic-common/media/Media';
 import {firestore} from 'firebase-admin';
 import {commonMediaTypeResolvers} from '../mediaTypeResolvers';
-import {Media} from '../Media';
 
 type FirestoreMovie = {
     [K in keyof Movie]: K extends 'releaseDate'
