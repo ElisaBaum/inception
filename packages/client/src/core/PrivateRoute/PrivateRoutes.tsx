@@ -1,6 +1,6 @@
 import {Route, RouteProps} from 'react-router';
 import {AuthStatus} from '../../user/userReducer';
-import React, {ComponentType} from 'react';
+import React, {ComponentType, ReactNode} from 'react';
 import {withUser} from '../../user/withUser';
 import {Redirect} from '../Redirect/Redirect';
 
@@ -8,16 +8,22 @@ interface PrivateRouteProps extends RouteProps {
     user: any;
     tokenId?: string;
     authStatus: AuthStatus;
-    component: ComponentType<any>;
+    component?: ComponentType<any>;
+    render?: (props: any) => ReactNode;
 }
 
-export const PrivateRoute = withUser(({user, tokenId, authStatus, component: Component, ...rest}: PrivateRouteProps) => {
+export const PrivateRoute = withUser(({user, tokenId, authStatus, render, component: Component, ...rest}: PrivateRouteProps) => {
     return (
         <Route
             {...rest}
             render={props => {
                 if (authStatus === 'authenticated') {
-                    return (<Component {...props} />);
+                    if (render) {
+                        return render(props);
+                    }
+                    if (Component) {
+                        return (<Component {...props} />);
+                    }
                 }
                 if (authStatus === 'unauthenticated') {
                     const friendInvite = true;

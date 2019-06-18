@@ -10,18 +10,20 @@ import {getPathWithoutParams} from './core/history';
 
 interface NavigationProps extends RouteComponentProps {
     user?: any;
+    isMenuOpen: boolean;
+    onMenuChange(isOpen: boolean);
 }
 
 export const Navigation = withUser(
     withRouter((
-        {user, location, history}: NavigationProps) => {
-            const route = getRoute(getPathWithoutParams(location));
+        {user, location, history, ...props}: NavigationProps) => {
+            const route = getRoute(getPathWithoutParams(location)) || {data: {title: ''}};
             return (
                 <Nav
                     title={route.data ? route.data.title : ''}
                     subTitle={user && user.name}
                     leftItem={(<PrevItem onPrev={() => history.goBack()}/>)}
-                    rightItem={(<IconButton aria-label="Menu"><Icon>{'menu'}</Icon></IconButton>)}
+                    rightItem={<MenuItem {...props} />}
                 />
             );
         }
@@ -31,5 +33,12 @@ export const Navigation = withUser(
 const PrevItem = ({onPrev}) => (
     <IconButton aria-label="Previous" onClick={onPrev}>
         <Icon>{'arrow_back'}</Icon>
+    </IconButton>
+);
+
+const MenuItem = ({isMenuOpen, onMenuChange}) => (
+    <IconButton aria-label="Menu"
+                onClick={() => onMenuChange(!isMenuOpen)}>
+        <Icon>{isMenuOpen ? 'close' : 'menu'}</Icon>
     </IconButton>
 );

@@ -36,6 +36,10 @@ export const defaultTheme = createMuiTheme({
             fontSize: '.85rem',
             fontWeight: 'normal',
             color: defaultColor,
+        },
+        h4: {
+            fontSize: '1.35rem',
+            fontWeight: 'normal',
         }
     },
     overrides: {

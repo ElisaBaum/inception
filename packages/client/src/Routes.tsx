@@ -1,12 +1,26 @@
-import React from 'react';
-import {Route as PublicRoute, Switch} from 'react-router-dom';
+import React, {ComponentType, ReactNode} from 'react';
+import {Route as PublicRoute, RouteProps, Switch} from 'react-router-dom';
 
 import {SignIn} from './user/signin/SignIn';
 import {Stream} from './user/stream/Stream';
 import {PrivateRoute} from './core/PrivateRoute/PrivateRoutes';
 import {SignUp} from './user/signup/SignUp';
+import {Icon} from './shared/Icon/Icon';
 
-export const routes: any[] = [
+type Routes = Array<{
+    path: string;
+    exact?: boolean;
+    component?: ComponentType;
+    render?: () => ReactNode;
+    route: ComponentType;
+    data: {
+        title: string;
+        icon?: ReactNode;
+        navTitle?: string;
+    };
+}>;
+
+export const routes: Routes = [
     {
         path: '/',
         component: Stream,
@@ -14,6 +28,8 @@ export const routes: any[] = [
         route: PrivateRoute,
         data: {
             title: 'Welcome',
+            icon: (<Icon>{'view_list'}</Icon>),
+            navTitle: 'Stream',
         }
     },
     {
@@ -37,7 +53,37 @@ export const routes: any[] = [
         render: () => (<div>No invite</div>),
         route: PublicRoute,
         data: {
-            title: 'No Invite'
+            title: 'No Invite',
+        }
+    },
+    {
+        path: '/settings',
+        render: () => (<div>Settings</div>),
+        route: PrivateRoute,
+        data: {
+            title: 'Settings',
+            icon: (<Icon>{'settings'}</Icon>),
+            navTitle: 'Settings',
+        }
+    },
+    {
+        path: '/friends',
+        render: () => (<div>Friends</div>),
+        route: PrivateRoute,
+        data: {
+            title: 'Friends',
+            icon: (<Icon>{'supervised_user_circle'}</Icon>),
+            navTitle: 'Friends',
+        }
+    },
+    {
+        path: '/sign-out',
+        render: () => (<div>Sign out</div>),
+        route: PrivateRoute,
+        data: {
+            title: 'Sign out',
+            icon: (<Icon>{'power_settings_new'}</Icon>),
+            navTitle: 'Sign out',
         }
     },
 ];

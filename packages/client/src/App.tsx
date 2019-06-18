@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Provider as StoreProvider} from 'react-redux';
 import {BrowserRouter as Router} from 'react-router-dom';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
@@ -13,6 +13,7 @@ import {Modals} from './core/modals/Modals';
 import {friendConnect} from './user/friends/friendConnect/friendConnectModal';
 import {SplashScreen} from './core/splashscreen/SplashScreen';
 import {Navigation} from './Navigation';
+import {Menu} from './Menu';
 
 store.dispatch(initUser());
 
@@ -21,15 +22,23 @@ interface AppProps {
 }
 
 export const App = withUser(({authStatus}: AppProps) => {
+    const [isMenuOpen, setMenuOpen] = useState();
     return (
         <Router>
-            <Navigation/>
-            <Routes/>
-            <Modals componentMap={{friendConnect}} />
-            {authStatus === 'pending' && (<SplashScreen />)}
+            <Menu isOpen={isMenuOpen}
+                  onStateChange={setMenuOpen}
+                  pageWrapId={'test'}/>
+            <div id={'test'}>
+                <Navigation isMenuOpen={isMenuOpen}
+                            onMenuChange={setMenuOpen}/>
+                <Routes/>
+            </div>
+            <Modals componentMap={{friendConnect}}/>
+            {authStatus === 'pending' && (<SplashScreen/>)}
         </Router>
     );
 });
+
 
 export const AppWithProviders = () => (
     <StoreProvider store={store}>

@@ -18,7 +18,7 @@ const styles = (theme: Theme) => ({
     root: {
         borderRadius: '.7rem',
         fontSize: '1rem',
-        padding: `${2 * theme.spacing.unit}px ${3 * theme.spacing.unit}px`,
+        padding: `${1.75 * theme.spacing.unit}px ${3 * theme.spacing.unit}px`,
         boxShadow: 'none',
     } as CSSProperties,
 
@@ -46,12 +46,12 @@ const styles = (theme: Theme) => ({
 
     iconLeft: {
         ...baseButtonIconStyles,
-        marginRight: 1.5 * theme.spacing.unit,
+        marginRight: 1 * theme.spacing.unit,
     } as CSSProperties,
 
     iconRight: {
         ...baseButtonIconStyles,
-        marginLeft: 1.5 * theme.spacing.unit,
+        marginLeft: 1 * theme.spacing.unit,
     } as CSSProperties,
 
     progress: {
