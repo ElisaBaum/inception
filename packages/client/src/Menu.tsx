@@ -56,7 +56,7 @@ export const Menu = withStyles(styles)(({onStateChange, classes, ...props}: Menu
                     <MenuButton key={index}
                                 fullWidth
                                 iconLeft={data.icon}
-                                component={Link}
+                                component={Link as any}
                                 size={'large'}
                                 onClick={() => onStateChange(false)}
                                 to={path}>
