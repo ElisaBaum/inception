@@ -27,8 +27,8 @@ export const App = withUser(({authStatus}: AppProps) => {
         <Router>
             <Menu isOpen={isMenuOpen}
                   onStateChange={setMenuOpen}
-                  pageWrapId={'test'}/>
-            <div id={'test'}>
+                  pageWrapId={'mainContent'}/>
+            <div id={'mainContent'}>
                 <Navigation isMenuOpen={isMenuOpen}
                             onMenuChange={setMenuOpen}/>
                 <Routes/>
