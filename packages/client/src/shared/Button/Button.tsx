@@ -59,7 +59,7 @@ const styles = (theme: Theme) => ({
     } as CSSProperties,
 });
 
-type ButtonProps = {
+export type ButtonProps = {
     iconLeft?: React.ReactNode;
     iconRight?: React.ReactNode;
     loading?: boolean;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ComponentType} from 'react';
 import {push as ReactBurgerMenu} from 'react-burger-menu';
 import {Link} from 'react-router-dom';
 import {Theme} from '@material-ui/core';
@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography';
 
 import {routes} from './Routes';
 import {Card} from './shared/Card/Card';
-import {Button} from './shared/Button/Button';
+import {Button, ButtonProps} from './shared/Button/Button';
 
 type MenuProps = {
     isOpen?: boolean;
@@ -55,12 +55,12 @@ export const Menu = withStyles(styles)(({onStateChange, classes, ...props}: Menu
                 .map(({path, data}, index) => (
                     <MenuButton key={index}
                                 fullWidth
-                                iconLeft={data.icon}
                                 component={Link as any}
-                                size={'large'}
+                                iconLeft={data.icon}
                                 onClick={() => onStateChange(false)}
+                                size={'large'}
                                 to={path}>
-                        {data.navTitle}
+                        {data.navTitle || ''}
                     </MenuButton>
                 ))}
         </Card>
@@ -78,4 +78,4 @@ const menuButtonStyles = theme => ({
     }
 });
 
-const MenuButton = withStyles(menuButtonStyles)(Button);
+const MenuButton = withStyles(menuButtonStyles)(Button) as ComponentType<ButtonProps & {to: string}>;

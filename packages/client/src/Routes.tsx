@@ -1,11 +1,13 @@
 import React, {ComponentType, ReactNode} from 'react';
-import {Route as PublicRoute, RouteProps, Switch} from 'react-router-dom';
+import {Link, Route as PublicRoute, RouteProps, Switch, withRouter} from 'react-router-dom';
+import posed, {PoseGroup} from 'react-pose';
 
 import {SignIn} from './user/signin/SignIn';
 import {Stream} from './user/stream/Stream';
 import {PrivateRoute} from './core/PrivateRoute/PrivateRoutes';
 import {SignUp} from './user/signup/SignUp';
 import {Icon} from './shared/Icon/Icon';
+import {Card} from './shared/Card/Card';
 
 type Routes = Array<{
     path: string;
@@ -58,7 +60,17 @@ export const routes: Routes = [
     },
     {
         path: '/settings',
-        render: () => (<div>Settings</div>),
+        render: () => (
+            <div>
+                <Link to={'/'}>{'stream'}</Link>
+                <Link to={'/friends'}>{'friends'}</Link>
+                sdfsdfsdfsdfsdf <br/>
+                sdfsdfsdfsdfsdf <br/>
+                sdfsdfsdfsdfsdf <br/>
+                sdfsdfsdfsdfsdf <br/>
+                sdfsdfsdfsdfsdf <br/>
+            </div>
+        ),
         route: PrivateRoute,
         data: {
             title: 'Settings',
@@ -68,7 +80,17 @@ export const routes: Routes = [
     },
     {
         path: '/friends',
-        render: () => (<div>Friends</div>),
+        render: () => (
+            <div>
+                <Link to={'/'}>{'stream'}</Link>
+                <Link to={'/settings'}>{'settings'}</Link>
+                dsfs jjjjjjj fdsfs jjjjjjj  <br/>
+                dsfs jjjjjjj f <br/>
+                dsfs jjjjjjj f <br/>
+                dsfs jjjjjjj f <br/>
+                dsfs jjjjjjj f <br/>
+            </div>
+        ),
         route: PrivateRoute,
         data: {
             title: 'Friends',
@@ -90,14 +112,33 @@ export const routes: Routes = [
 
 export const getRoute = path => routes.find(route => route.path === path);
 
-export const Routes = () => {
-    return (
-        <Switch>
-            {
-                routes.map(({route: Route, data, ...props}, index) => (
-                    <Route key={index} {...props} />
-                ))
-            }
-        </Switch>
-    );
-};
+export const Routes = () => (
+    <PublicRoute render={({location}) => (
+        <PoseGroup>
+            <RouteContainer key={location.pathname}>
+                <Switch location={location}>
+                    {
+                        routes.map(({route: CurrentRoute, data, ...props}) => (
+                            <CurrentRoute key={props.path} {...props} />
+                        ))
+                    }
+                </Switch>
+            </RouteContainer>
+        </PoseGroup>
+    )}/>
+);
+
+const RouteContainer = posed.div({
+    enter: {
+        x: 0,
+        opacity: 1,
+        delay: 200,
+        beforeChildren: true,
+        transition: {x: {duration: 150}}
+    },
+    exit: {
+        opacity: 0,
+        x: -150,
+        transition: {x: {duration: 150}}
+    }
+});
