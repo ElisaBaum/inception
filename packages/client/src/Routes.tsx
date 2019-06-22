@@ -1,5 +1,5 @@
 import React, {ComponentType, ReactNode} from 'react';
-import {Link, Route as PublicRoute, RouteProps, Switch, withRouter} from 'react-router-dom';
+import {Link, Route as PublicRoute, Switch} from 'react-router-dom';
 import posed, {PoseGroup} from 'react-pose';
 
 import {SignIn} from './user/signin/SignIn';
@@ -7,7 +7,6 @@ import {Stream} from './user/stream/Stream';
 import {PrivateRoute} from './core/PrivateRoute/PrivateRoutes';
 import {SignUp} from './user/signup/SignUp';
 import {Icon} from './shared/Icon/Icon';
-import {Card} from './shared/Card/Card';
 
 type Routes = Array<{
     path: string;
