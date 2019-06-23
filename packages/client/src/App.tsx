@@ -9,6 +9,7 @@ import {withUser} from './user/withUser';
 import {AuthStatus} from './user/userReducer';
 import {Routes} from './Routes';
 import {initUser} from './user/userActionCreators';
+import {initSearch} from './user/stream/search/searchActionCreators';
 import {Modals} from './core/modals/Modals';
 import {friendConnect} from './user/friends/friendConnect/friendConnectModal';
 import {SplashScreen} from './core/splashscreen/SplashScreen';
@@ -16,6 +17,7 @@ import {Navigation} from './Navigation';
 import {Menu} from './Menu';
 
 store.dispatch(initUser());
+store.dispatch(initSearch());
 
 interface AppProps {
     authStatus: AuthStatus;
