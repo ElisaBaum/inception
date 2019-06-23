@@ -8,19 +8,31 @@ import {CardFooter} from '../shared/Card/CardFooter';
 import {Badge} from '../shared/Badge/Badge';
 import {Container} from '../shared/Container/Container';
 import {UserAvatar} from '../user/userAvatar/UserAvatar';
-import {getMediaMetaInfo} from '../media/mediaMetaInfo';
+import {MediaType, mediaTypes} from '../media/types';
 
 export interface RatingCardProps {
     rating: Rating;
 }
 
+declare module '../media/types' {
+    interface MediaType {
+        getRatingCardData(media: any): RatingCardData;
+    }
+}
+
+export interface RatingCardData {
+    title: string;
+    subtitle?: string;
+    icon: string;
+}
+
 const ReviewRating = ({rating}: RatingCardProps) => {
-    const mediaMetaInfo = getMediaMetaInfo(rating.media);
+    const {title, subtitle, icon} = mediaTypes[rating.media.type].getRatingCardData(rating.media);
     return (
         <Card>
-            <CardHeader title={mediaMetaInfo.title}
-                        subtitle={mediaMetaInfo.subtitle}
-                        icon={mediaMetaInfo.icon}/>
+            <CardHeader title={title}
+                        subtitle={subtitle}
+                        icon={icon}/>
             <CardContent>
                 {rating.review}
             </CardContent>
@@ -32,12 +44,12 @@ const ReviewRating = ({rating}: RatingCardProps) => {
 };
 
 const Rating = ({rating}: RatingCardProps) => {
-    const mediaMetaInfo = getMediaMetaInfo(rating.media);
+    const {title, subtitle, icon} = mediaTypes[rating.media.type].getRatingCardData(rating.media);
     return (
         <Card>
-            <CardHeader title={mediaMetaInfo.title}
-                        subtitle={mediaMetaInfo.subtitle}
-                        icon={mediaMetaInfo.icon}
+            <CardHeader title={title}
+                        subtitle={subtitle}
+                        icon={icon}
                         action={<UserRatingAvatar rating={rating}/>}/>
         </Card>
     );
@@ -55,6 +67,6 @@ export const RatingCard = ({rating}: RatingCardProps) => {
     if (rating.review) {
         return <ReviewRating rating={rating}/>;
     } else {
-        return <Rating rating={rating} />;
+        return <Rating rating={rating}/>;
     }
 };
