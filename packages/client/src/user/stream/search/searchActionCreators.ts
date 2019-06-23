@@ -15,7 +15,7 @@ export const processSearchQuery = (query: string) => dispatch => {
     dispatch(setSearchQuery(query));
 };
 export const performSearch = (query) => dispatch => {
-
+    // TODO
 };
 export const initSearch = () => dispatch => {
     const {q} = parse(history.location.search);
