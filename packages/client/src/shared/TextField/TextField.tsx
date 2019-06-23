@@ -1,11 +1,10 @@
-import * as React from 'react';
+import React, {ReactNode} from 'react';
 import withStyles, {WithStyles} from '@material-ui/core/styles/withStyles';
 import MuiTextField, {TextFieldProps as MuiTextFieldProps} from '@material-ui/core/TextField';
 import {Theme} from '@material-ui/core';
 import InputAdornment from '@material-ui/core/InputAdornment';
 
 import {defaultColor, secondaryColor} from '../themes/defaultTheme';
-import {Icon} from '../Icon/Icon';
 
 const styles = (theme: Theme) => ({
     root: {
@@ -30,7 +29,7 @@ const styles = (theme: Theme) => ({
 });
 
 type TextFieldProps = {
-    icon?: string;
+    icon?: ReactNode;
     placeholder: string;
 } & MuiTextFieldProps & WithStyles<typeof styles>;
 
@@ -41,16 +40,14 @@ export const TextField = withStyles(styles)(({icon, classes, ...props}: TextFiel
         InputLabelProps={{
             disableAnimation: true
         }}
-        InputProps={icon && {
+        InputProps={icon !== undefined ? {
             classes,
             startAdornment: (
                 <InputAdornment position="start">
-                    <Icon fontSize={'small'}>
-                        {icon}
-                    </Icon>
+                    {icon}
                 </InputAdornment>
             ),
-        }}
+        } : undefined}
         {...props}
     />
 ));

@@ -15,6 +15,7 @@ const styles = (theme: Theme) => ({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
+        zIndex: 2000,
     } as CSSProperties,
 });
 

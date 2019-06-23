@@ -1,10 +1,8 @@
-import React from 'react';
-import {Grid, WithStyles} from '@material-ui/core';
+import React, {ReactNode} from 'react';
+import Grid from '@material-ui/core/Grid';
 import {H1} from '../Headline/H1';
-import withStyles from '@material-ui/core/styles/withStyles';
-import IconButton from '@material-ui/core/IconButton';
+import withStyles, {WithStyles} from '@material-ui/core/styles/withStyles';
 import {H3} from '../Headline/H3';
-import {Icon} from '../Icon/Icon';
 
 const styles = theme => ({
     navContainer: {
@@ -20,12 +18,16 @@ const styles = theme => ({
 
 type NavProps = {
     title: string;
+    leftItem: ReactNode;
+    rightItem: ReactNode;
     subTitle?: string;
 } & WithStyles<typeof styles>;
 
 export const Nav = withStyles(styles)(({
                                            classes: {navContainer, h1},
                                            title,
+                                           leftItem,
+                                           rightItem,
                                            subTitle,
                                        }: NavProps) => (
     <Grid container
@@ -34,9 +36,7 @@ export const Nav = withStyles(styles)(({
           justify="space-between"
           className={navContainer}>
         <Grid item>
-            <IconButton aria-label="Previous">
-                <Icon>{'arrow_back'}</Icon>
-            </IconButton>
+            {leftItem}
         </Grid>
         <Grid item>
             <Grid container
@@ -54,9 +54,7 @@ export const Nav = withStyles(styles)(({
             </Grid>
         </Grid>
         <Grid item>
-            <IconButton aria-label="Menu">
-                <Icon>{'menu'}</Icon>
-            </IconButton>
+            {rightItem}
         </Grid>
     </Grid>
 ));

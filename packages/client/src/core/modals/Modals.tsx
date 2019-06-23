@@ -1,6 +1,5 @@
 import React, {ComponentType} from 'react';
 import {connect} from 'react-redux';
-import DialogContent from '@material-ui/core/DialogContent';
 import Dialog from '@material-ui/core/Dialog';
 import Slide from '@material-ui/core/Slide';
 
@@ -14,8 +13,10 @@ export interface ModalsProps {
     close: typeof openModal;
 }
 
+const AnySlide: any = Slide;
+
 const SlideTransition = React.forwardRef(function(props, ref) {
-    return <Slide direction="up" ref={ref} {...props} />;
+    return <AnySlide direction="up" ref={ref} {...props} />;
 });
 
 export const Modals = connect(
@@ -35,13 +36,13 @@ export const Modals = connect(
                 return (
                     <Dialog
                         key={modalKey}
-                        TransitionComponent={SlideTransition}
+                        TransitionComponent={SlideTransition as any}
                         fullScreen
                         open={modals[modalKey].open}
                         onClose={() => close({modalKey})}>
-                            <DialogContent>
+                            {/*<DialogContent>*/}
                                 <ModalContent onClose={() => close({modalKey})}/>
-                            </DialogContent>
+                            {/*</DialogContent>*/}
                     </Dialog>
                 );
             })}

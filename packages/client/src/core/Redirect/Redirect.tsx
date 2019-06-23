@@ -1,17 +1,17 @@
 import React from 'react';
-import {Redirect as ReactRouterRedirect, RedirectProps} from 'react-router';
+import {Redirect as ReactRouterRedirect, RedirectProps, RouteComponentProps, withRouter} from 'react-router';
 
-import {history} from '../history';
+export const Redirect = withRouter(
+    ({to, history, ...props}: RedirectProps & RouteComponentProps) => {
+        const toProps = typeof to === 'string' ? {pathname: to} : to;
 
-export const Redirect = ({to, ...props}: RedirectProps) => {
-    const toProps = typeof to === 'string' ? {pathname: to} : to;
-
-    return (
-        <ReactRouterRedirect
-            to={{
-                ...history.location,
-                ...toProps,
-            }}
-            {...props} />
-    );
-};
+        return (
+            <ReactRouterRedirect
+                to={{
+                    ...history.location,
+                    ...toProps,
+                }}
+                {...props} />
+        );
+    }
+);

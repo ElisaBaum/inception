@@ -7,6 +7,7 @@ import {
     START_SIGN_IN,
     START_SIGN_UP
 } from './userActions';
+import {AuthProvider} from './auth/authService';
 
 export type AuthStatus = 'authenticated' | 'pending' | 'loading' | 'unauthenticated';
 
@@ -15,6 +16,7 @@ export interface UserState {
     friendFromCurrentInvite?: any;
     tokenId?: string;
     errors?: any;
+    usedAuthProvider?: AuthProvider;
     authStatus: AuthStatus;
 }
 
@@ -23,6 +25,11 @@ const initialState: UserState = {authStatus: 'pending'};
 export default function(state = initialState, action): UserState {
     switch (action.type) {
         case START_SIGN_IN:
+            return {
+                ...state,
+                usedAuthProvider: action.payload,
+                authStatus: 'loading',
+            };
         case START_SIGN_UP:
             return {
                 ...state,
