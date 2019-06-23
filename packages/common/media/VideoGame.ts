@@ -1,5 +1,5 @@
-import {Media} from './Media';
-
-export interface VideoGame extends Media {
+export interface VideoGame {
+    id: string;
+    type: 'VideoGame';
     name: string;
 }

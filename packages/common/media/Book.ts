@@ -1,6 +1,7 @@
-import {Media} from './Media';
 
-export interface Book extends Media {
+export interface Book {
+    id: string;
+    type: 'Book';
     title: string;
     author: string;
 }

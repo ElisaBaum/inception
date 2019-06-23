@@ -1,6 +1,7 @@
-import {Media} from '../media/Media';
 
-export interface Movie extends Media {
+export interface Movie {
+    id: string;
+    type: 'Movie';
     title: string;
     releaseDate: string;
     genres: string[];

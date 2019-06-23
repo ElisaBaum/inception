@@ -1,6 +1,6 @@
-import {Media} from './Media';
-
-export interface Music extends Media {
+export interface Music {
+    id: string;
+    type: 'Music';
     name: string;
     artist: string;
 }

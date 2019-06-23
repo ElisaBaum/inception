@@ -14,7 +14,8 @@ export const mockRatings: Rating[] = [
             id: '23',
             type: 'Movie',
             title: 'Aladin',
-            releaseDate: 2019,
+            releaseDate: '2019',
+            genres: [],
         }
     },
     {
