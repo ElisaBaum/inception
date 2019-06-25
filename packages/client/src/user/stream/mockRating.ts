@@ -1,4 +1,4 @@
-import {Rating} from '../../../../common/ratings/Rating';
+import {Rating} from '../../../../common/src/ratings/Rating';
 
 export const mockRatings: Rating[] = [
     {

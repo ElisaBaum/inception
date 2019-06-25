@@ -1,4 +1,6 @@
 import * as admin from 'firebase-admin';
+import {createIdFromExtId} from '@baum/ic-common';
+
 import {listFactory} from '../common/firestore';
 import {createMediaFromExt, getMediaByExtId, mapToPreviewMedia} from '../media/mediaService';
 import {Rating, UpsertFromExtRatingData, UpsertRatingData} from './Rating';
@@ -22,6 +24,3 @@ export const upsertRating = async (id: string, data: UpsertRatingData): Promise<
     await collection().doc(id).set(rating, {merge: true});
     return rating;
 };
-
-export const createIdFromExtId = (mediaId: string, extId: string) => `${mediaId}#${extId}`;
-

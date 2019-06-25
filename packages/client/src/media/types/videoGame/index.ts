@@ -1,5 +1,5 @@
 import {MediaType} from '../index';
-import {VideoGame} from '../../../../../common/media/VideoGame';
+import {VideoGame} from '../../../../../common/src/media/types/videoGame/VideoGame';
 
 export default {
     getRatingCardData: (videoGame: VideoGame) => ({

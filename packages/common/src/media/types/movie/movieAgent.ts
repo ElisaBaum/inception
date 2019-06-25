@@ -1,14 +1,19 @@
 import axios from 'axios';
 import {MovieResult} from './MovieResult';
 import {MovieSearchResult} from './MovieSearchResult';
+import {createIdFromExtId} from '../../media';
 
 const movieHttpClient = axios.create({
     baseURL: 'https://api.themoviedb.org/3',
-    params: {
-        // TODO remove default value from version control
-        api_key: process.env.MOVIE_API_KEY || 'd349e6f5d3d53d98fe73da2c7191c781',
-    }
 });
+
+movieHttpClient.interceptors.request.use(config => ({
+    ...config,
+    params: {
+        ...config.params,
+        api_key: process.env.MOVIE_API_KEY,
+    }
+}));
 
 interface SearchMoviesResponse {
     page: number;
@@ -18,7 +23,9 @@ interface SearchMoviesResponse {
 }
 
 const toMovie = (movie: MovieResult | MovieSearchResult) => ({
-    id: movie.id,
+    id: createIdFromExtId('Movie', String(movie.id)),
+    extId: movie.id,
+    type: 'Movie',
     title: movie.original_title,
     releaseDate: new Date(movie.release_date).toISOString(),
     ...('genres' in movie ? {

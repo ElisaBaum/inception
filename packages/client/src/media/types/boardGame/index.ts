@@ -1,5 +1,5 @@
 import {MediaType} from '../index';
-import {BoardGame} from '../../../../../common/media/BoardGame';
+import {BoardGame} from '../../../../../common/src/media/types/boardGame/BoardGame';
 
 export default {
     getRatingCardData: (boardGame: BoardGame) => ({

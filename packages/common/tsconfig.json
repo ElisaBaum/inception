@@ -3,10 +3,11 @@
   "compilerOptions": {
     "declaration": true,
     "sourceMap": false,
-    "removeComments": true
+    "removeComments": true,
+    "outDir": "dist"
   },
   "include": [
-    "movies"
+    "src"
   ],
   "exclude": [
     "node_modules"

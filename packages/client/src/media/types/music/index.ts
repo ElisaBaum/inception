@@ -1,5 +1,5 @@
 import {MediaType} from '../index';
-import {Music} from '../../../../../common/media/Music';
+import {Music} from '../../../../../common/src/media/types/music/Music';
 
 export default {
     getRatingCardData: (music: Music) => ({

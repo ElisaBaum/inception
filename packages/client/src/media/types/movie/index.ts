@@ -1,5 +1,5 @@
 import {MediaType} from '../index';
-import {Movie} from '../../../../../common/movies';
+import {Movie} from '@baum/ic-common';
 
 export default {
     getRatingCardData: (movie: Movie) => ({

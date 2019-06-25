@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Rating} from '../../../common/ratings/Rating';
+import {Rating} from '../../../common/src/ratings/Rating';
 import {Card} from '../shared/Card/Card';
 import {CardHeader} from '../shared/Card/CardHeader';
 import {CardContent} from '../shared/Card/CardContent';
