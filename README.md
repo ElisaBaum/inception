@@ -26,6 +26,13 @@ change.
 npm run start
 ``` 
 
+## Deployment
+
+### Firebase Functions
+```bash
+firebase deploy --only functions
+```
+
 ## Emulate Firebase
 In order to emulate firebase hosting, firstore and functions locally run the following commands:
 1. [Create credentials](https://firebase.google.com/docs/functions/local-emulator#set_up_admin_credentials_optional) 
@@ -33,6 +40,9 @@ In order to emulate firebase hosting, firstore and functions locally run the fol
 3. Install emulator: `firebase setup:emulators:firestore`
 4. Run emulator: `GOOGLE_APPLICATION_CREDENTIALS=path/to/credentials firebase emulators:start` or
 `GOOGLE_APPLICATION_CREDENTIALS=path/to/credentials npm run emulate`
+
+## Remote Debugging with Firebase
+See https://github.com/googlearchive/cloud-functions-emulator/wiki/Debugging-with-WebStorm
 
 ## Build
 Links local packages together, installs remaining package dependencies and bundles all apps 
