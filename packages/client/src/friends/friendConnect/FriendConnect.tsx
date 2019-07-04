@@ -1,13 +1,13 @@
 import React from 'react';
 
-import {withUser} from '../../withUser';
-import {Button} from '../../../shared/Button/Button';
-import {UserAvatar} from '../../userAvatar/UserAvatar';
-import {Badge} from '../../../shared/Badge/Badge';
-import {WhiteIcon} from '../../../shared/Icon/Icon';
-import {ModalTitle} from '../../../shared/modal/ModalTitle';
-import {ModalContent} from '../../../shared/modal/ModalContent';
-import {ModalActions} from '../../../shared/modal/ModalActions';
+import {withUser} from '../../user/withUser';
+import {Button} from '../../shared/Button/Button';
+import {UserAvatar} from '../../user/userAvatar/UserAvatar';
+import {Badge} from '../../shared/Badge/Badge';
+import {WhiteIcon} from '../../shared/Icon/Icon';
+import {ModalTitle} from '../../shared/modal/ModalTitle';
+import {ModalContent} from '../../shared/modal/ModalContent';
+import {ModalActions} from '../../shared/modal/ModalActions';
 
 interface FriendConnectProps {
     friendFromCurrentInvite: any;

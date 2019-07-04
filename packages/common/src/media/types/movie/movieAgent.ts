@@ -27,7 +27,7 @@ const toMovie = (movie: MovieResult | MovieSearchResult) => ({
     extId: movie.id,
     type: 'Movie',
     title: movie.original_title,
-    releaseDate: new Date(movie.release_date).toISOString(),
+    releaseDate: movie.release_date ? new Date(movie.release_date).toISOString() : undefined,
     ...('genres' in movie ? {
         genres: movie.genres.map(({name}) => name)
     } : {})

@@ -10,12 +10,12 @@ export class MediaType {
 }
 
 export const mediaTypes: { [type: string]: MediaType } = {
-    BoardGame,
-    Book,
-    Location,
+    // BoardGame,
+    // Book,
+    // Location,
     Movie,
-    Music,
-    VideoGame,
+    // Music,
+    // VideoGame,
 };
 
 export const mediaTypeList = Object.entries(mediaTypes).map(([key, value]) => ({

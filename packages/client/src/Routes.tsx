@@ -3,7 +3,7 @@ import {Link, Route as PublicRoute, Switch} from 'react-router-dom';
 import posed, {PoseGroup} from 'react-pose';
 
 import {SignIn} from './user/signin/SignIn';
-import {Stream} from './user/stream/Stream';
+import {Stream} from './stream/Stream';
 import {PrivateRoute} from './core/PrivateRoute/PrivateRoutes';
 import {SignUp} from './user/signup/SignUp';
 import {Icon} from './shared/Icon/Icon';

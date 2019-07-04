@@ -47,7 +47,7 @@ export const Menu = withStyles(styles)(({onStateChange, classes, ...props}: Menu
         <Card className={classes.card}>
             <Typography gutterBottom
                         align={'right'}
-                        variant={'h4'}>
+                        variant={'h1'}>
                 Menu
             </Typography>
             {routes
@@ -69,9 +69,7 @@ export const Menu = withStyles(styles)(({onStateChange, classes, ...props}: Menu
 
 const menuButtonStyles = theme => ({
     root: {
-        fontSize: '1.35rem',
-        fontWeight: 300,
-        padding: '6px 24px',
+        padding: '8px 24px',
     },
     label: {
         justifyContent: 'left',

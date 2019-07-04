@@ -4,6 +4,6 @@ export interface Movie {
     type: 'Movie';
     extId: any;
     title: string;
-    releaseDate: string;
+    releaseDate?: string;
     genres: string[];
 }
