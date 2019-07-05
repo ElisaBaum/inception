@@ -6,6 +6,7 @@ import {MediaType, mediaTypes} from '../media/types';
 import {Card} from '../shared/Card/Card';
 import {CardHeader} from '../shared/Card/CardHeader';
 import withStyles, {WithStyles} from '@material-ui/core/styles/withStyles';
+import {Theme} from '@material-ui/core';
 
 export interface SearchResultCardData {
     title: string;
@@ -19,11 +20,13 @@ declare module '../media/types' {
     }
 }
 
-const style = theme => ({
+const style = (theme: Theme) => ({
     buttonWrapper: {
+        ...(theme.overrides as any).MuiPaper.elevation1,
         width: '100%',
         textAlign: 'left' as 'left',
         borderRadius: '.7rem',
+        overflow: 'hidden',
     },
     card: {
         width: '100%',
