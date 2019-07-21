@@ -12,5 +12,9 @@ export default {
         subtitle: movie.releaseDate ? new Date(movie.releaseDate).getFullYear() : undefined,
         icon: 'movie_creation',
     }),
+    getMediaPageData: (movie: Movie) => ({
+        title: movie.title,
+        subtitle: movie.releaseDate ? new Date(movie.releaseDate).getFullYear() : undefined,
+    }),
     search: searchMovies,
 } as MediaType;

@@ -21,14 +21,7 @@ export const SearchResults = connect(
     <>
         {searchStatus === 'loading'
             ? (
-                <>
-                    <Grid item xs={12}>
-                        <SearchResultCardSkeleton/>
-                    </Grid>
-                    <Grid item xs={12}>
-                        <SearchResultCardSkeleton/>
-                    </Grid>
-                </>
+                <SearchResultsSkeleton/>
             )
             : searchResults.map((searchResult, index) => (
                 <Grid item xs={12} key={index}>
@@ -37,3 +30,17 @@ export const SearchResults = connect(
             ))}
     </>
 ));
+
+const SearchResultsSkeleton = () => (
+    <>
+        <Grid item xs={12}>
+            <SearchResultCardSkeleton/>
+        </Grid>
+        <Grid item xs={12}>
+            <SearchResultCardSkeleton/>
+        </Grid>
+        <Grid item xs={12}>
+            <SearchResultCardSkeleton/>
+        </Grid>
+    </>
+);

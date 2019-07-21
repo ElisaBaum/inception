@@ -7,6 +7,7 @@ import {Card} from '../shared/Card/Card';
 import {CardHeader} from '../shared/Card/CardHeader';
 import withStyles, {WithStyles} from '@material-ui/core/styles/withStyles';
 import {Theme} from '@material-ui/core';
+import {Link} from 'react-router-dom';
 
 export interface SearchResultCardData {
     title: string;
@@ -40,7 +41,9 @@ export type SearchResultCardProps = {
 export const SearchResultCard = withStyles(style)(({classes, media}: SearchResultCardProps) => {
     const {title, subtitle, icon} = mediaTypes[media.type].getSearchResultData(media);
     return (
-        <ButtonBase className={classes.buttonWrapper}>
+        <ButtonBase className={classes.buttonWrapper}
+                    component={WrappedLink}
+                    to={{pathname: '/media', state: {media}}}>
             <Card className={classes.card}>
                 <CardHeader title={title}
                             subtitle={subtitle}
@@ -49,3 +52,7 @@ export const SearchResultCard = withStyles(style)(({classes, media}: SearchResul
         </ButtonBase>
     );
 });
+
+const WrappedLink = React.forwardRef((props, ref: any) => (
+    <Link innerRef={ref} {...props} />
+));

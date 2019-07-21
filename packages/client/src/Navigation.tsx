@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {createContext, useContext, useEffect, useState} from 'react';
 import {RouteComponentProps, withRouter} from 'react-router-dom';
 import IconButton from '@material-ui/core/IconButton';
 
@@ -7,6 +7,30 @@ import {withUser} from './user/withUser';
 import {Nav} from './shared/Nav/Nav';
 import {Icon} from './shared/Icon/Icon';
 import {getPathWithoutParams} from './core/history';
+
+export const NavigationContext = createContext<{
+    title?: string;
+    subtitle?: string
+    setTitle(title: string);
+    setSubtitle(subtitle: string);
+}>({} as any);
+export const NavigationProvider = ({children}) => {
+    const [title, setTitle] = useState<string | undefined>(undefined);
+    const [subtitle, setSubtitle] = useState<string | undefined>(undefined);
+    return (
+        <NavigationContext.Provider value={{title, subtitle, setTitle, setSubtitle}}>
+            {children}
+        </NavigationContext.Provider>
+    );
+};
+
+export const useNavigation = ({title, subtitle}) => {
+    const {setTitle, setSubtitle} = useContext(NavigationContext);
+    useEffect(() => {
+        setTitle(title);
+        setSubtitle(subtitle);
+    });
+};
 
 interface NavigationProps extends RouteComponentProps {
     user?: any;
@@ -17,11 +41,17 @@ interface NavigationProps extends RouteComponentProps {
 export const Navigation = withUser(
     withRouter((
         {user, location, history, ...props}: NavigationProps) => {
-            const route = getRoute(getPathWithoutParams(location)) || {data: {title: ''}};
+            const {setSubtitle, setTitle, ...navigationData} = useContext(NavigationContext);
+            const route = getRoute(getPathWithoutParams(location));
+            const titleProps = {
+                title: '',
+                subtitle: '',
+                ...navigationData,
+                ...(route && route.data || {}),
+            };
             return (
                 <Nav
-                    title={route.data ? route.data.title : ''}
-                    subTitle={user && user.name}
+                    {...titleProps}
                     leftItem={(<PrevItem onPrev={() => history.goBack()}/>)}
                     rightItem={<MenuItem {...props} />}
                 />

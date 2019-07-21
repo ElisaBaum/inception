@@ -3,10 +3,11 @@ import {Link, Route as PublicRoute, Switch} from 'react-router-dom';
 import posed, {PoseGroup} from 'react-pose';
 
 import {SignIn} from './user/signin/SignIn';
-import {Stream} from './stream/Stream';
+import {StreamPage} from './stream/StreamPage';
 import {PrivateRoute} from './core/PrivateRoute/PrivateRoutes';
 import {SignUp} from './user/signup/SignUp';
 import {Icon} from './shared/Icon/Icon';
+import {MediaPage} from './media/MediaPage';
 
 type Routes = Array<{
     path: string;
@@ -24,13 +25,13 @@ type Routes = Array<{
 export const routes: Routes = [
     {
         path: '/',
-        component: Stream,
+        component: StreamPage,
         exact: true,
         route: PrivateRoute,
         data: {
             title: 'Welcome',
             icon: (<Icon>{'view_list'}</Icon>),
-            navTitle: 'Stream',
+            navTitle: 'StreamPage',
         }
     },
     {
@@ -105,6 +106,14 @@ export const routes: Routes = [
             title: 'Sign out',
             icon: (<Icon>{'power_settings_new'}</Icon>),
             navTitle: 'Sign out',
+        }
+    },
+    {
+        path: '/media',
+        component: MediaPage,
+        route: PrivateRoute,
+        data: {
+            icon: (<Icon>{'power_settings_new'}</Icon>),
         }
     },
 ];

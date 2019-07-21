@@ -1,5 +1,6 @@
-export interface Location {
-    id: string;
+import {BaseMedia} from '../../BaseMedia';
+
+export interface Location extends BaseMedia {
     type: 'Location';
     name: string;
 }

@@ -40,6 +40,7 @@ const typeDefs = gql`
         releaseDate: String
         genres: [String]
         ratings(limit: Int, offset: Int): [Rating]
+        avgRating: Float
     }
 
     type Rating {

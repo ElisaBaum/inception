@@ -1,9 +1,10 @@
-import {SET_SEARCH_QUERY, SET_SEARCH_RESULTS} from './searchActions';
+import {SET_SEARCH_ERROR, SET_SEARCH_QUERY, SET_SEARCH_RESULTS} from './searchActions';
 
 export interface SearchState {
     query: string;
     searchResults: any[];
-    searchStatus?: 'loading' | 'success';
+    searchStatus?: 'loading' | 'success' | 'error' | 'empty';
+    error?: any;
 }
 
 const initialState = {
@@ -23,7 +24,13 @@ export default function(state = initialState, action): SearchState {
             return {
                 ...state,
                 searchResults: action.payload,
-                searchStatus: 'success',
+                searchStatus: action.payload.length ? 'success' : 'empty',
+            };
+        case SET_SEARCH_ERROR:
+            return {
+                ...state,
+                searchStatus: 'error',
+                error: action.payload,
             };
         default:
             return state;

@@ -1,6 +1,6 @@
+import {BaseMedia} from '../../BaseMedia';
 
-export interface Movie {
-    id: string;
+export interface Movie extends BaseMedia {
     type: 'Movie';
     extId: any;
     title: string;

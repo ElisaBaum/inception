@@ -6,6 +6,8 @@ import {H3} from '../Headline/H3';
 
 const styles = theme => ({
     navContainer: {
+        position: 'relative' as 'relative',
+        zIndex: 1999,
         flexGrow: 1,
         padding: `0 ${theme.spacing.unit * .5}px`,
         width: '100%',
@@ -20,7 +22,7 @@ type NavProps = {
     title: string;
     leftItem: ReactNode;
     rightItem: ReactNode;
-    subTitle?: string;
+    subtitle?: string;
 } & WithStyles<typeof styles>;
 
 export const Nav = withStyles(styles)(({
@@ -28,7 +30,7 @@ export const Nav = withStyles(styles)(({
                                            title,
                                            leftItem,
                                            rightItem,
-                                           subTitle,
+                                           subtitle,
                                        }: NavProps) => (
     <Grid container
           alignItems={'center'}
@@ -46,9 +48,9 @@ export const Nav = withStyles(styles)(({
                 <Grid item>
                     <H1 className={h1}>{title}</H1>
                 </Grid>
-                {subTitle && (
+                {subtitle && (
                     <Grid item>
-                        <H3>{subTitle}</H3>
+                        <H3>{subtitle}</H3>
                     </Grid>
                 )}
             </Grid>

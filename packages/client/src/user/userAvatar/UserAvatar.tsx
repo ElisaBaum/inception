@@ -6,7 +6,7 @@ import {Theme} from '@material-ui/core';
 
 const styles = (theme: Theme) => ({
     root: {
-        backgroundImage: `radial-gradient(circle at bottom right, #FF53AA 24%, #492AED 100%)`,
+        background: `#485572`,
     } as CSSProperties,
 });
 

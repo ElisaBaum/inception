@@ -13,7 +13,7 @@ import {initSearch} from './search/searchActionCreators';
 import {Modals} from './core/modals/Modals';
 import {friendConnect} from './friends/friendConnect/friendConnectModal';
 import {SplashScreen} from './core/splashscreen/SplashScreen';
-import {Navigation} from './Navigation';
+import {Navigation, NavigationProvider} from './Navigation';
 import {Menu} from './Menu';
 
 store.dispatch(initUser());
@@ -45,7 +45,9 @@ export const App = withUser(({authStatus}: AppProps) => {
 export const AppWithProviders = () => (
     <StoreProvider store={store}>
         <MuiThemeProvider theme={defaultTheme}>
-            <App/>
+            <NavigationProvider>
+                <App/>
+            </NavigationProvider>
         </MuiThemeProvider>
     </StoreProvider>
 );
