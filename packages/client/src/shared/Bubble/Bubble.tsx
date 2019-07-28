@@ -8,12 +8,12 @@ const styles = (theme) => ({
         fontSize: '1rem'
     },
     large: {
-        width: 6 * theme.spacing.unit,
-        height: 6 * theme.spacing.unit,
+        width: theme.spacing(6),
+        height: theme.spacing(6),
     },
     normal: {
-        width: 4 * theme.spacing.unit,
-        height: 4 * theme.spacing.unit,
+        width: theme.spacing(4),
+        height: theme.spacing(4),
     }
 });
 

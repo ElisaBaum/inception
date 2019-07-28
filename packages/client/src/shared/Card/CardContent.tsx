@@ -6,7 +6,7 @@ import withStyles, {WithStyles} from '@material-ui/core/styles/withStyles';
 const styles = (theme) => ({
     root: {
         padding: 0,
-        marginTop: theme.spacing.unit,
+        marginTop: theme.spacing(),
     },
     cardContent: {
         fontSize: '1rem',

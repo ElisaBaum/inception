@@ -1,13 +1,14 @@
 import React from 'react';
-import {Media} from '@baum/ic-common';
+import {Theme} from '@material-ui/core';
 import ButtonBase from '@material-ui/core/ButtonBase';
+import makeStyles from '@material-ui/styles/makeStyles';
+import {Media} from '@baum/ic-common';
 
 import {MediaType, mediaTypes} from '../media/types';
 import {Card} from '../shared/Card/Card';
 import {CardHeader} from '../shared/Card/CardHeader';
-import withStyles, {WithStyles} from '@material-ui/core/styles/withStyles';
-import {Theme} from '@material-ui/core';
-import {Link} from 'react-router-dom';
+import {useDispatch} from 'react-redux';
+import {navigateToMedia} from '../media/mediaActionCreators';
 
 export interface SearchResultCardData {
     title: string;
@@ -21,7 +22,7 @@ declare module '../media/types' {
     }
 }
 
-const style = (theme: Theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
     buttonWrapper: {
         ...(theme.overrides as any).MuiPaper.elevation1,
         width: '100%',
@@ -32,18 +33,19 @@ const style = (theme: Theme) => ({
     card: {
         width: '100%',
     }
-});
+}));
 
 export type SearchResultCardProps = {
     media: Media;
-} & WithStyles<typeof style>;
+};
 
-export const SearchResultCard = withStyles(style)(({classes, media}: SearchResultCardProps) => {
+export const SearchResultCard = ({media}: SearchResultCardProps) => {
+    const classes = useStyles();
+    const dispatch = useDispatch();
     const {title, subtitle, icon} = mediaTypes[media.type].getSearchResultData(media);
     return (
         <ButtonBase className={classes.buttonWrapper}
-                    component={WrappedLink}
-                    to={{pathname: '/media', state: {media}}}>
+                    onClick={() => dispatch(navigateToMedia(media))}>
             <Card className={classes.card}>
                 <CardHeader title={title}
                             subtitle={subtitle}
@@ -51,8 +53,4 @@ export const SearchResultCard = withStyles(style)(({classes, media}: SearchResul
             </Card>
         </ButtonBase>
     );
-});
-
-const WrappedLink = React.forwardRef((props, ref: any) => (
-    <Link innerRef={ref} {...props} />
-));
+};

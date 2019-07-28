@@ -18,9 +18,9 @@ type MenuProps = {
 const styles = (theme: Theme) => ({
     '@global': {
         '.bm-item-list': {
-            paddingTop: 2 * theme.spacing.unit,
+            paddingTop: theme.spacing(2),
             paddingLeft: '3px',
-            marginRight: -1 * theme.spacing.unit,
+            marginRight: theme.spacing(-1),
         },
         '.bm-menu': {
             overflow: 'visible !important',
@@ -32,8 +32,8 @@ const styles = (theme: Theme) => ({
     card: {
         height: '100%',
         outline: 'none',
-        paddingRight: 6 * theme.spacing.unit,
-        paddingLeft: 2 * theme.spacing.unit,
+        paddingRight: theme.spacing(6),
+        paddingLeft: theme.spacing(2),
     }
 });
 

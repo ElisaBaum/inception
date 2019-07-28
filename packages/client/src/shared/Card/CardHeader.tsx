@@ -12,10 +12,10 @@ const styles = (theme: Theme) => ({
         padding: 0,
     },
     subheader: {
-        marginTop: .5 * theme.spacing.unit,
+        marginTop: theme.spacing(.5),
     },
     avatar: {
-        marginRight: theme.spacing.unit,
+        marginRight: theme.spacing(),
     },
     action: {
         marginRight: 0,
@@ -24,7 +24,7 @@ const styles = (theme: Theme) => ({
     icon: {
         color: '#495672',
         flex: '0 0 auto',
-        marginRight: theme.spacing.unit,
+        marginRight: theme.spacing(),
     },
     titleContainer: {
         display: 'flex',

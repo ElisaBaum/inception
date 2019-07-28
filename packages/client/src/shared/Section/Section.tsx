@@ -7,10 +7,10 @@ import Grid, {GridProps} from '@material-ui/core/Grid';
 const styles = theme => ({
     sectionContainer: {
         flexGrow: 1,
-        paddingTop: theme.spacing.unit,
-        paddingBottom: theme.spacing.unit * 1.5,
-        paddingLeft: theme.spacing.unit * 1.5,
-        paddingRight: theme.spacing.unit * 1.5,
+        paddingTop: theme.spacing(),
+        paddingBottom: theme.spacing(1.5),
+        paddingLeft: theme.spacing(1.5),
+        paddingRight: theme.spacing(1.5),
         width: '100%',
         margin: 0,
     },
@@ -28,7 +28,7 @@ type SectionProps = {
 
 export const Section = withStyles(styles)(({title, classes, children, fullHeight, ...gridProps}: SectionProps) => (
     <Grid container
-          spacing={16}
+          spacing={2}
           className={classNames(classes.sectionContainer, fullHeight && classes.fullHeight)}
           {...gridProps}>
         {title && (

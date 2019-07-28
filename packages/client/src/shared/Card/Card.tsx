@@ -5,7 +5,7 @@ import {Theme} from '@material-ui/core/styles/createMuiTheme';
 
 const styles = (theme: Theme) => ({
     root: {
-        padding: `${theme.spacing.unit * 2.5}px ${theme.spacing.unit * 3}px`,
+        padding: `${theme.spacing(2.5)}px ${theme.spacing(3)}px`,
     }
 });
 

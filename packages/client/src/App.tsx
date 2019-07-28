@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
 import {Provider as StoreProvider} from 'react-redux';
-import {BrowserRouter as Router} from 'react-router-dom';
+import {Router} from 'react-router-dom';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 
 import {defaultTheme} from './shared/themes/defaultTheme';
+import {history} from './core/history';
 import {store} from './core/store';
 import {withUser} from './user/withUser';
 import {AuthStatus} from './user/userReducer';
@@ -26,7 +27,7 @@ interface AppProps {
 export const App = withUser(({authStatus}: AppProps) => {
     const [isMenuOpen, setMenuOpen] = useState();
     return (
-        <Router>
+        <Router history={history}>
             <Menu isOpen={isMenuOpen}
                   onStateChange={setMenuOpen}
                   pageWrapId={'mainContent'}/>

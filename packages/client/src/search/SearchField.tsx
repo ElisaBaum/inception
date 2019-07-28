@@ -1,28 +1,17 @@
 import React, {useState} from 'react';
-import {connect} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {useDebouncedCallback} from 'use-debounce';
 
 import {TextField} from '../shared/TextField/TextField';
 import {DefaultIcon} from '../shared/Icon/Icon';
 import {getQuery} from './searchSelectors';
 import {processSearchQuery} from './searchActionCreators';
-import {State} from '../core/store';
 
-export interface SearchFieldProps {
-    query: string;
-    onSearch(query: string);
-}
-
-export const SearchField = connect(
-    (state: State) => ({
-        query: getQuery(state),
-    }),
-    {
-        onSearch: processSearchQuery,
-    },
-)(({query, onSearch}: SearchFieldProps) => {
+export const SearchField = () => {
+    const dispatch = useDispatch();
+    const query = useSelector(getQuery);
     const [value, setValue] = useState(query);
-    const [debouncedCallback] = useDebouncedCallback(onSearch, 500);
+    const [debouncedCallback] = useDebouncedCallback(q => dispatch(processSearchQuery(q)), 500);
 
     return (
         <TextField placeholder={'Search'}
@@ -34,4 +23,4 @@ export const SearchField = connect(
                    }}
                    icon={(<DefaultIcon>{'search'}</DefaultIcon>)}/>
     );
-});
+};

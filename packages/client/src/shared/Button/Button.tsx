@@ -18,17 +18,17 @@ const styles = (theme: Theme) => ({
     root: {
         borderRadius: '.7rem',
         fontSize: '1rem',
-        padding: `${1.75 * theme.spacing.unit}px ${3 * theme.spacing.unit}px`,
+        padding: `${theme.spacing(1.75)}px ${theme.spacing(3)}px`,
         boxShadow: 'none',
     } as CSSProperties,
 
-    flatSecondary: {
+    textSecondary: {
         background: 'transparent',
         border: `1px solid #E6E7EF`,
         color: primaryColor,
     } as CSSProperties,
 
-    flatPrimary: {
+    textPrimary: {
         background: `linear-gradient(45deg, ${secondaryColor} 100%, ${secondaryColor} 100%)`,
         color: 'white',
     },
@@ -36,7 +36,7 @@ const styles = (theme: Theme) => ({
     sizeSmall: {
         fontSize: '.85rem',
         background: 'transparent',
-        padding: `${.5 * theme.spacing.unit}px ${theme.spacing.unit}px`,
+        padding: `${theme.spacing(.5)}px ${theme.spacing()}px`,
         color: defaultColor,
     },
 
@@ -46,16 +46,16 @@ const styles = (theme: Theme) => ({
 
     iconLeft: {
         ...baseButtonIconStyles,
-        marginRight: 1 * theme.spacing.unit,
+        marginRight: theme.spacing(),
     } as CSSProperties,
 
     iconRight: {
         ...baseButtonIconStyles,
-        marginLeft: 1 * theme.spacing.unit,
+        marginLeft: theme.spacing(),
     } as CSSProperties,
 
     progress: {
-        marginRight: theme.spacing.unit,
+        marginRight: theme.spacing(),
     } as CSSProperties,
 });
 

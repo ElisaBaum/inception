@@ -8,7 +8,7 @@ const styles = (theme: Theme) => ({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        padding: `${2 * theme.spacing.unit}px ${3 * theme.spacing.unit}px`,
+        padding: `${theme.spacing(2)}px ${theme.spacing(3)}px`,
     } as CSSProperties,
 });
 

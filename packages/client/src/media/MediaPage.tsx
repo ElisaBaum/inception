@@ -1,31 +1,32 @@
 import React from 'react';
-import withStyles, {WithStyles} from '@material-ui/core/styles/withStyles';
-import {Media} from '@baum/ic-common';
+import makeStyles from '@material-ui/core/styles/makeStyles';
 
 import {Section} from '../shared/Section/Section';
 import {RoundedHeader} from '../shared/RoundedHeader/RoundedHeader';
 import {useNavigation} from '../Navigation';
 import {RatingCircle} from '../ratings/RatingCircle';
-import {RouteProps} from 'react-router';
-import {MediaType, mediaTypes} from '../media/types';
+import {MediaType} from '../media/types';
+import {useSelector} from 'react-redux';
+import {getCurrentMedia} from './mediaSelectors';
 
 declare module '../media/types' {
     interface MediaType {
-        getMediaPageData(media: any): {title: string; subtitle: string};
+        getMediaPageData(media: any): { title: string; subtitle: string };
     }
 }
 
-const styles = theme => ({
+const useStyles = makeStyles({
     avgRatingTitle: {
         color: '#bfc4d7',
         fontSize: '.8rem',
     }
 });
 
-type MediaPageProps = WithStyles<typeof styles> & RouteProps;
+type MediaPageProps = {};
 
-export const MediaPage = withStyles(styles)(({classes, location}: MediaPageProps) => {
-    const media = mediaTypes[location.state.media.type].getMediaPageData(location.state.media);
+export const MediaPage = ({}: MediaPageProps) => {
+    const classes = useStyles();
+    const media = useSelector(getCurrentMedia);
     useNavigation({...media});
     return (
         <>
@@ -43,4 +44,4 @@ export const MediaPage = withStyles(styles)(({classes, location}: MediaPageProps
             </Section>
         </>
     );
-});
+};
